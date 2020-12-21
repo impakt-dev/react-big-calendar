@@ -23,15 +23,49 @@ export default class TimeGutter extends Component {
     this.slotMetrics = this.slotMetrics.update({ min, max, timeslots, step })
   }
 
-  renderSlot = (value, idx) => {
+  renderSlot = (value, idx, isBordered) => {
     if (idx !== 0) return null
     const { localizer, getNow } = this.props
 
     const isNow = this.slotMetrics.dateIsInGroup(getNow(), idx)
     return (
-      <span className={clsx('rbc-label', isNow && 'rbc-now')}>
-        {localizer.format(value, 'timeGutterFormat')}
-      </span>
+      <div
+        style={{ display: 'flex', flexDirection: 'row', position: 'relative' }}
+      >
+        <div
+          className={clsx('rbc-label', isNow && 'rbc-now')}
+          style={{ width: 50, borderBottom: 2, borderColor: 'red' }}
+        >
+          <span
+            style={{ position: 'absolute', left: 0, zIndex: 9990, top: -10 }}
+            className=""
+          >
+            {localizer.format(value, 'timeGutterFormat')}
+          </span>
+        </div>
+        <div style={{ marginTop: 0, display: 'flex', flexDirection: 'column' }}>
+          <div
+            style={{
+              marginBottom: 28.5,
+              width: 20,
+              borderTop: 2,
+              height: 1,
+              borderColor: '#ebebeb',
+              background: '#ebebeb',
+            }}
+          />
+          <div
+            style={{
+              marginBottom: 29.5,
+              width: 20,
+              borderTop: 2,
+              height: 1,
+              borderColor: '#ebebeb',
+              background: '#ebebeb',
+            }}
+          />
+        </div>
+      </div>
     )
   }
 
@@ -49,6 +83,7 @@ export default class TimeGutter extends Component {
               components={components}
               renderSlot={this.renderSlot}
               getters={getters}
+              lastColumnDate={this.props.lastColumnDate}
             />
           )
         })}
@@ -65,7 +100,7 @@ TimeGutter.propTypes = {
   getNow: PropTypes.func.isRequired,
   components: PropTypes.object.isRequired,
   getters: PropTypes.object,
-
+  lastColumnDate: PropTypes.string,
   localizer: PropTypes.object.isRequired,
   resource: PropTypes.string,
 }

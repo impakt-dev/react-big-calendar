@@ -168,6 +168,7 @@ export default class TimeGrid extends Component {
       resizable,
     } = this.props
 
+    console.log('----', this.props)
     width = width || this.state.gutterWidth
 
     let start = range[0],
@@ -245,7 +246,9 @@ export default class TimeGrid extends Component {
             components={components}
             className="rbc-time-gutter"
             getters={getters}
+            lastColumnDate={range[range.length - 1]}
           />
+
           {this.renderEvents(range, rangeEvents, getNow())}
         </div>
       </div>

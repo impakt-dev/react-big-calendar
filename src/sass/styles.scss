@@ -1,5 +1,6 @@
 @import './variables';
 @import './reset';
+@import url('http://fonts.cdnfonts.com/css/circular-std-book');
 
 .rbc-calendar {
   box-sizing: border-box;
@@ -54,11 +55,25 @@
   font-weight: bold;
   font-size: 90%;
   min-height: 0;
-  border-bottom: 1px solid $cell-border;
+  border-bottom: 0px solid $cell-border;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  // & + & {
+  //   border-left: 1px solid $cell-border;
+  // }
+font-family: Circular Std Bold;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 24px;
+/* identical to box height, or 171% */
 
-  & + & {
-    border-left: 1px solid $cell-border;
-  }
+text-align: center;
+letter-spacing: 0.25px;
+
+/* Wireframe / Grey / 500 */
+
+color: #909090;
 
   .rbc-rtl & + & {
     border-left-width: 0;
@@ -78,25 +93,6 @@
   user-select: none;
   -webkit-user-select: none;
   z-index: 4;
-}
-
-.rbc-row-content-scrollable {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-
-  .rbc-row-content-scroll-container {
-    height: 100%;
-    overflow-y: scroll;
-
-    /* Hide scrollbar for Chrome, Safari and Opera */
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
 }
 
 .rbc-today {

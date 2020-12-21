@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import clsx from 'clsx'
 import * as dates from './utils/dates'
+import moment from 'moment'
 
 class EventCell extends React.Component {
   render() {
@@ -32,14 +33,32 @@ class EventCell extends React.Component {
     let end = accessors.end(event)
     let start = accessors.start(event)
     let allDay = accessors.allDay(event)
+    const hour = moment(start).format('HH:mm A')
 
     let showAsAllDay =
       isAllDay || allDay || dates.diff(start, dates.ceil(end, 'day'), 'day') > 1
 
     let userProps = getters.eventProp(event, start, end, selected)
-
+    const diffMins = moment().diff(moment(start).add(1, 'minutes'), 'minutes')
+    const is15MinAfterBefore = -15 <= diffMins && diffMins <= 15
+    const isPastSession = end < moment()
+    const backgroundColor = is15MinAfterBefore
+      ? 'rgb(38, 38, 38)'
+      : isPastSession
+      ? '#EBEBEB'
+      : '#909090'
     const content = (
-      <div className="rbc-event-content" title={tooltip || undefined}>
+      <div
+        className="rbc-event-content"
+        style={{
+          color: is15MinAfterBefore
+            ? 'white'
+            : end < moment()
+            ? '#909090'
+            : 'white',
+        }}
+        title={tooltip || undefined}
+      >
         {Event ? (
           <Event
             event={event}
@@ -52,7 +71,7 @@ class EventCell extends React.Component {
             slotEnd={slotEnd}
           />
         ) : (
-          title
+          `${hour} ${title}`
         )}
       </div>
     )
@@ -69,6 +88,7 @@ class EventCell extends React.Component {
             'rbc-event-continues-prior': continuesPrior,
             'rbc-event-continues-after': continuesAfter,
           })}
+          style={{ backgroundColor, color: 'black' }}
           onClick={e => onSelect && onSelect(event, e)}
           onDoubleClick={e => onDoubleClick && onDoubleClick(event, e)}
           onKeyPress={e => onKeyPress && onKeyPress(event, e)}

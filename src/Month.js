@@ -80,13 +80,15 @@ class MonthView extends React.Component {
     this._weekCount = weeks.length
 
     return (
-      <div className={clsx('rbc-month-view', className)}>
+      <>
         <div className="rbc-row rbc-month-header">
           {this.renderHeaders(weeks[0])}
         </div>
-        {weeks.map(this.renderWeek)}
-        {this.props.popup && this.renderOverlay()}
-      </div>
+        <div className={clsx('rbc-month-view', className)}>
+          {weeks.map(this.renderWeek)}
+          {this.props.popup && this.renderOverlay()}
+        </div>
+      </>
     )
   }
 
@@ -102,7 +104,6 @@ class MonthView extends React.Component {
       longPressThreshold,
       accessors,
       getters,
-      showAllEvents,
     } = this.props
 
     const { needLimitMeasure, rowLimit } = this.state
@@ -121,7 +122,7 @@ class MonthView extends React.Component {
         date={date}
         range={week}
         events={events}
-        maxRows={showAllEvents ? Infinity : rowLimit}
+        maxRows={rowLimit}
         selected={selected}
         selectable={selectable}
         components={components}
@@ -138,7 +139,6 @@ class MonthView extends React.Component {
         longPressThreshold={longPressThreshold}
         rtl={this.props.rtl}
         resizable={this.props.resizable}
-        showAllEvents={showAllEvents}
       />
     )
   }
@@ -344,7 +344,6 @@ MonthView.propTypes = {
   onDoubleClickEvent: PropTypes.func,
   onKeyPressEvent: PropTypes.func,
   onShowMore: PropTypes.func,
-  showAllEvents: PropTypes.bool,
   onDrillDown: PropTypes.func,
   getDrilldownView: PropTypes.func.isRequired,
 

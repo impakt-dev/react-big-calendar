@@ -8,6 +8,7 @@ import DateContentRow from './DateContentRow'
 import Header from './Header'
 import ResourceHeader from './ResourceHeader'
 import { notify } from './utils/helpers'
+import moment from 'moment'
 
 class TimeGridHeader extends React.Component {
   handleHeaderClick = (date, view, e) => {
@@ -31,11 +32,50 @@ class TimeGridHeader extends React.Component {
       let label = localizer.format(date, 'dayFormat')
 
       const { className, style } = dayProp(date)
+      const splittedData = label.split(' ')
+      const dayName = splittedData[0]
+      const dayNumber = splittedData[1].split('/')[0]
+      const isActiveDate =
+        moment()
+          .format('DD MM YY')
+          .toString() ===
+        moment(date)
+          .format('DD MM YY')
+          .toString()
 
-      let header = (
-        <HeaderComponent date={date} label={label} localizer={localizer} />
+      const activeDayNumberStyle = isActiveDate
+        ? {
+            height: 30,
+            width: 30,
+            backgroundColor: 'black',
+            color: 'white',
+            borderRadius: 15,
+            justifyContent: 'center',
+            alignItems: 'center',
+            align: 'center',
+            display: 'flex',
+            fontWeight: 'bold',
+            fontSize: 18,
+          }
+        : {
+            fontWeight: 'bold',
+            fontSize: 18,
+          }
+
+      const header = (
+        <div
+          style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <div style={{ fontWeight: 'lighter' }}>{dayName}</div>
+          <div style={activeDayNumberStyle}>{dayNumber}</div>
+        </div>
       )
-
       return (
         <div
           key={i}
@@ -164,10 +204,11 @@ class TimeGridHeader extends React.Component {
               className={`rbc-row rbc-time-header-cell${
                 range.length <= 1 ? ' rbc-time-header-cell-single-day' : ''
               }`}
+              style={{ borderWidth: 2, borderColor: 'red', zIndex: 999 }}
             >
               {this.renderHeaderCells(range)}
             </div>
-            <DateContentRow
+            {/* <DateContentRow
               isAllDay
               rtl={rtl}
               getNow={getNow}
@@ -188,7 +229,7 @@ class TimeGridHeader extends React.Component {
               onSelectSlot={this.props.onSelectSlot}
               longPressThreshold={this.props.longPressThreshold}
               resizable={resizable}
-            />
+            /> */}
           </div>
         ))}
       </div>

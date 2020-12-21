@@ -132,8 +132,9 @@ class DayColumn extends React.Component {
           className,
           'rbc-day-slot',
           'rbc-time-column',
-          isNow && 'rbc-now',
-          isNow && 'rbc-today', // WHY
+          //selected today column
+          // isNow && 'rbc-now',
+          // isNow && 'rbc-today', // WHY
           selecting && 'rbc-slot-selecting'
         )}
       >
@@ -144,6 +145,7 @@ class DayColumn extends React.Component {
             resource={resource}
             getters={getters}
             components={components}
+            lastColumnDate={this.props.range[this.props.range.length - 1]}
           />
         ))}
         <EventContainer
