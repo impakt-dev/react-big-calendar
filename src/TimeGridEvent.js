@@ -27,16 +27,23 @@ function TimeGridEvent(props) {
   let tooltip = accessors.tooltip(event)
   let end = accessors.end(event)
   let start = accessors.start(event)
-
+  const splittedLabel = label.split(' – ')
+  const splittedStartLabel = splittedLabel[0].split(' ')
+  const splittedEndLabel = splittedLabel[1].split(' ')
+  const processedLabel = `${
+    splittedStartLabel[0]
+  }${splittedStartLabel[1].toLowerCase()} - ${
+    splittedEndLabel[0]
+  }${splittedEndLabel[1].toLowerCase()}`
   let userProps = getters.eventProp(event, start, end, selected)
 
   let { height, top, width, xOffset } = style
   const inner = [
-    <div key="1" className="rbc-event-label">
-      {label}
-    </div>,
     <div key="2" className="rbc-event-content">
       {Event ? <Event event={event} title={title} /> : title}
+    </div>,
+    <div key="1" className="rbc-event-label">
+      {processedLabel.toLowerCase()}
     </div>,
   ]
 

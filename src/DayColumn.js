@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import PropTypes from 'prop-types'
 import React from 'react'
 import { findDOMNode } from 'react-dom'
@@ -169,8 +170,23 @@ class DayColumn extends React.Component {
         {isNow && this.intervalTriggered && (
           <div
             className="rbc-current-time-indicator"
-            style={{ top: `${this.state.timeIndicatorPosition}%` }}
-          />
+            style={{
+              top: `${this.state.timeIndicatorPosition}%`,
+              background: 'black',
+            }}
+          >
+            <div
+              style={{
+                height: 12,
+                width: 12,
+                borderRadius: 6,
+                backgroundColor: 'black',
+                position: 'absolute',
+                top: -5,
+                left: -7,
+              }}
+            />
+          </div>
         )}
       </div>
     )

@@ -46,29 +46,40 @@
   }
 
   .rbc-event {
-    border: 1px solid $event-border;
+    border: 0px solid $event-border;
     display: flex;
     max-height: 100%;
-    min-height: 20px;
-    flex-flow: column wrap;
-    align-items: flex-start;
+    min-height: 10px;
+    flex-direction: column;
+    // flex-flow: column wrap;
+    // align-items: flex-start;
     overflow: hidden;
     position: absolute;
+    justify-content: center;
   }
 
   .rbc-event-label {
-    flex: none;
     padding-right: 5px;
     width: auto;
+    font-size: 14px;
+    font-family: Circular Std Medium;
   }
 
   .rbc-event-content {
     width: 100%;
-    flex: 1 1 0;
-    word-wrap: break-word;
+    max-height: 1em;
+    text-overflow: ellipsis;
+    // height: 11em;
+    // flex: 1 1 0;
     line-height: 1;
     height: 100%;
     min-height: 1em;
+    margin-bottom: 4px;
+    font-size: 16px;
+    font-family: Circular Std Medium;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .rbc-time-slot {
