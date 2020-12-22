@@ -253,6 +253,7 @@ class DayColumn extends React.Component {
           onDoubleClick={e => this._doubleClick(event, e)}
           onKeyPress={e => this._keyPress(event, e)}
           resizable={resizable}
+          view={this.props.view}
         />
       )
     })

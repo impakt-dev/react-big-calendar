@@ -101,15 +101,17 @@ export default [
   },
   {
     id: 14,
-    title: 'Yoga Course 101 burhan asdasd asd asd asd asd  asdas ',
+    title: 'Yoga Course 101 - Clean Your Mind from morning to night',
     start: new Date(new Date().setHours(new Date().getHours() - 5)),
     end: new Date(new Date().setHours(new Date().getHours() - 4)),
+    isLive: false,
   },
   {
     id: 14,
-    title: 'Yoga Course 101 burhan asdasd asd asd asd asd  asdas ',
+    title: 'Yoga Course 101 - Clean Your Mind from night to morning',
     start: new Date(new Date().setHours(new Date().getHours())),
     end: new Date(new Date().setMinutes(new Date().getMinutes() + 180)),
+    isLive: true,
   },
   // {
   //   id: 15,

@@ -28,7 +28,6 @@ export default class TimeSlotGroup extends Component {
             moment(lastColumnDate)
               .format('DD MM YY')
               .toString()
-          console.log(value, lastColumnDate)
           return (
             <Wrapper key={idx} value={value} resource={resource}>
               <div

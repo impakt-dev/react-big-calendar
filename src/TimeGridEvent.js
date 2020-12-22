@@ -21,7 +21,7 @@ function TimeGridEvent(props) {
     onClick,
     onDoubleClick,
     onKeyPress,
-    components: { event: Event, eventWrapper: EventWrapper },
+    components: { event: Event, eventWrapper: EventWrapper, liveButton },
   } = props
   let title = accessors.title(event)
   let tooltip = accessors.tooltip(event)
@@ -71,10 +71,69 @@ function TimeGridEvent(props) {
           'rbc-event-continues-later': continuesLater,
         })}
       >
-        {inner}
+        {props.view !== 'day' && inner}
+        {props.view === 'day' && (
+          <EventItem
+            isLive={event.isLive}
+            inner={inner}
+            liveButton={liveButton}
+            event={event}
+            selected={props.selected}
+          />
+        )}
       </div>
     </EventWrapper>
   )
 }
 
 export default TimeGridEvent
+
+const EventItem = ({ inner, isLive, liveButton, event, selected }) => {
+  return (
+    <div style={styles.container}>
+      <div>{inner}</div>
+      {isLive && liveButton && liveButton({ event, selected })}
+      {isLive && !liveButton && (
+        <div style={!selected ? styles.goLive : styles.selectedGoLive}>
+          Go Live
+        </div>
+      )}
+    </div>
+  )
+}
+
+const styles = {
+  container: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  goLive: {
+    display: 'flex',
+    height: 40,
+    background: 'black',
+    color: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+    align: 'center',
+    borderRadius: 5,
+    paddingRight: 32,
+    paddingLeft: 32,
+    fontSize: 18,
+    fontFamily: 'Circular Std Bold',
+  },
+  selectedGoLive: {
+    display: 'flex',
+    height: 40,
+    background: 'white',
+    color: 'black',
+    justifyContent: 'center',
+    alignItems: 'center',
+    align: 'center',
+    borderRadius: 5,
+    paddingRight: 32,
+    paddingLeft: 32,
+    fontSize: 18,
+    fontFamily: 'Circular Std Bold',
+  },
+}

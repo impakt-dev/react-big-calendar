@@ -141,6 +141,7 @@ export default class TimeGrid extends Component {
             key={i + '-' + jj}
             date={date}
             events={daysEvents}
+            view={this.props.view}
             dayLayoutAlgorithm={dayLayoutAlgorithm}
           />
         )
