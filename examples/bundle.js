@@ -3533,11 +3533,25 @@
         isLive: !1,
       },
       {
-        id: 14,
+        id: 140,
         title: 'Yoga Course 101 - Clean Your Mind from night to morning',
         start: new Date(new Date().setHours(new Date().getHours())),
         end: new Date(new Date().setMinutes(new Date().getMinutes() + 180)),
         isLive: !0,
+      },
+      {
+        id: 141,
+        title: 'Yoga Course 101 - Clean Your Mind from night to morning 2x',
+        start: new Date(new Date().setHours(new Date().getHours() + 8)),
+        end: new Date(new Date().setHours(new Date().getHours() + 9)),
+        isLive: !1,
+      },
+      {
+        id: 145,
+        title: 'Yoga Course 101 - Clean Your Mind from night to morning x',
+        start: new Date(new Date().setHours(new Date().getHours() + 7)),
+        end: new Date(new Date().setHours(new Date().getHours() + 8)),
+        isLive: !1,
       },
       {
         id: 16,
@@ -6327,7 +6341,7 @@
               v = e.showMultiDayTimes,
               E = e.longPressThreshold,
               C = e.resizable
-            console.log('----', this.props), (o = o || this.state.gutterWidth)
+            o = o || this.state.gutterWidth
             var y = t[0],
               x = t[t.length - 1]
             this.slots = t.length
@@ -31634,7 +31648,7 @@ object-assign
           timeslots: 2,
           showMultiDayTimes: !0,
           localizer: n,
-          defaultView: 'day',
+          defaultView: 'agenda',
           components: { liveButton: null },
         })
       }
@@ -34514,54 +34528,28 @@ object-assign
       d = o(t(7)),
       A = t(16),
       u = t(39),
-      f = t(38)
+      f = (t(38), r(t(0)))
     function p(e) {
-      var n = e.selected,
-        t = e.getters,
-        o = e.accessors,
-        r = e.localizer,
-        A = e.components,
-        p = e.length,
-        b = e.date,
-        m = e.events,
+      e.selected, e.getters
+      var n = e.accessors,
+        t = e.localizer,
+        o = (e.components, e.length),
+        r = e.date,
+        A = e.events,
+        p = (0, a.useRef)(null),
+        b = (0, a.useRef)(null),
         h = (0, a.useRef)(null),
         g = (0, a.useRef)(null),
-        B = (0, a.useRef)(null),
-        v = (0, a.useRef)(null),
-        E = (0, a.useRef)(null)
+        B = (0, a.useRef)(null)
       ;(0, a.useEffect)(function() {
-        y()
+        v()
       })
-      var C = function(e, n) {
-          var t = '',
-            i = A.time,
-            l = r.messages.allDay,
-            s = o.end(n),
-            c = o.start(n)
-          return (
-            o.allDay(n) ||
-              (d.eq(c, s)
-                ? (l = r.format(c, 'agendaTimeFormat'))
-                : d.eq(c, s, 'day')
-                ? (l = r.format({ start: c, end: s }, 'agendaTimeRangeFormat'))
-                : d.eq(e, c, 'day')
-                ? (l = r.format(c, 'agendaTimeFormat'))
-                : d.eq(e, s, 'day') && (l = r.format(s, 'agendaTimeFormat'))),
-            d.gt(e, c, 'day') && (t = 'rbc-continues-prior'),
-            d.lt(e, s, 'day') && (t += ' rbc-continues-after'),
-            a.default.createElement(
-              'span',
-              { className: t.trim() },
-              i ? a.default.createElement(i, { event: n, day: e, label: l }) : l
-            )
-          )
-        },
-        y = function() {
-          if (E.current) {
-            var e = h.current,
-              n = E.current.firstChild
+      var v = function() {
+          if (B.current) {
+            var e = p.current,
+              n = B.current.firstChild
             if (n) {
-              var t = v.current.scrollHeight > v.current.clientHeight,
+              var t = g.current.scrollHeight > g.current.clientHeight,
                 o = [],
                 r = o
               ;(o = [
@@ -34569,8 +34557,8 @@ object-assign
                 (0, s.default)(n.children[1]),
               ]),
                 (r[0] === o[0] && r[1] === o[1]) ||
-                  ((g.current.style.width = o[0] + 'px'),
-                  (B.current.style.width = o[1] + 'px')),
+                  ((b.current.style.width = o[0] + 'px'),
+                  (h.current.style.width = o[1] + 'px')),
                 t
                   ? ((0, i.default)(e, 'rbc-header-overflowing'),
                     (e.style.marginRight = (0, c.default)() + 'px'))
@@ -34578,123 +34566,173 @@ object-assign
             }
           }
         },
-        x = r.messages,
-        _ = d.add(b, p, 'day'),
-        w = d.range(b, _, 'day')
-      return (
-        (m = m.filter(function(e) {
-          return (0, u.inRange)(e, b, _, o)
-        })).sort(function(e, n) {
-          return +o.start(e) - +o.start(n)
-        }),
-        a.default.createElement(
-          'div',
-          { className: 'rbc-agenda-view' },
-          0 !== m.length
-            ? a.default.createElement(
-                a.default.Fragment,
-                null,
+        E = (t.messages, d.add(r, o, 'day')),
+        C = (d.range(r, E, 'day'),
+        (A = A.filter(function(e) {
+          return (0, u.inRange)(e, r, E, n)
+        })).filter(function(e) {
+          return (
+            (0, f.default)(e.start).format('DD MM YY') ===
+            (0, f.default)().format('DD MM YY')
+          )
+        }))
+      A.sort(function(e, t) {
+        return +n.start(e) - +n.start(t)
+      })
+      var y = {
+        container: {
+          backgroundColor: 'white',
+          display: 'flex',
+          alignItems: 'center',
+          borderWidth: 2,
+          borderColor: 'red',
+        },
+        dateContainer: {
+          display: 'flex',
+          alignItems: 'flex-end',
+          marginRight: 8,
+          width: 50,
+        },
+        dayNumber: {
+          marginRight: 4,
+          fontSize: 24,
+          fontFamily: 'Circular Std Bold',
+        },
+        dayName: {
+          fontSize: 14,
+          paddingBottom: 4,
+          fontFamily: 'Circular Std Medium',
+        },
+        eventContainer: {
+          background: '#EBEBEB',
+          borderRadius: 5,
+          padding: 8,
+          flex: 1,
+          display: 'flex',
+          justifyContent: 'space-between',
+        },
+        eventTitle: { fontFamily: 'Circular Std Bold', fontSize: 16 },
+        eventDate: { fontFamily: 'Circular Std Medium', fontSize: 14 },
+      }
+      return a.default.createElement(
+        'div',
+        { className: 'rbc-agenda-view', style: { marginTop: 8 } },
+        A.length > 0 &&
+          A.map(function(e, n) {
+            var t,
+              o,
+              r =
+                (0, f.default)(e.start)
+                  .format('HH:mmA')
+                  .toLowerCase() +
+                ' - ' +
+                (0, f.default)(e.end)
+                  .format('HH:mmA')
+                  .toLowerCase()
+            return a.default.createElement(
+              'div',
+              { key: n },
+              e.id === C[0].id &&
+                0 === n &&
                 a.default.createElement(
-                  'table',
-                  { ref: h, className: 'rbc-agenda-table' },
+                  'div',
+                  {
+                    style: ((t = {
+                      marginTop: 4,
+                      marginBottom: 4,
+                      flex: 1,
+                      display: 'flex',
+                      height: 1,
+                      background: 'black',
+                      position: 'relative',
+                    }),
+                    (t.marginTop = 8),
+                    t),
+                  },
+                  a.default.createElement('div', {
+                    style: {
+                      width: 12,
+                      height: 12,
+                      borderRadius: 6,
+                      backgroundColor: 'black',
+                      position: 'absolute',
+                      top: -6,
+                    },
+                  })
+                ),
+              a.default.createElement(
+                'div',
+                { style: y.container },
+                a.default.createElement(
+                  'div',
+                  { style: y.dateContainer },
                   a.default.createElement(
-                    'thead',
-                    null,
-                    a.default.createElement(
-                      'tr',
-                      null,
-                      a.default.createElement(
-                        'th',
-                        { className: 'rbc-header', ref: g },
-                        x.date
-                      ),
-                      a.default.createElement(
-                        'th',
-                        { className: 'rbc-header', ref: B },
-                        x.time
-                      ),
-                      a.default.createElement(
-                        'th',
-                        { className: 'rbc-header' },
-                        x.event
-                      )
-                    )
+                    'div',
+                    { style: y.dayNumber },
+                    (0, f.default)(e.start).format('DD')
+                  ),
+                  a.default.createElement(
+                    'div',
+                    { style: y.dayName },
+                    (0, f.default)(e.start).format('dd')
                   )
                 ),
                 a.default.createElement(
                   'div',
-                  { className: 'rbc-agenda-content', ref: v },
+                  { style: y.eventContainer },
                   a.default.createElement(
-                    'table',
-                    { className: 'rbc-agenda-table' },
+                    'div',
+                    null,
                     a.default.createElement(
-                      'tbody',
-                      { ref: E },
-                      w.map(function(e, i) {
-                        return (function(e, i, l) {
-                          var s = A.event,
-                            c = A.date
-                          return (i = i.filter(function(n) {
-                            return (0,
-                            u.inRange)(n, d.startOf(e, 'day'), d.endOf(e, 'day'), o)
-                          })).map(function(d, A) {
-                            var u = o.title(d),
-                              p = o.end(d),
-                              b = o.start(d),
-                              m = t.eventProp(d, b, p, (0, f.isSelected)(d, n)),
-                              h = 0 === A && r.format(e, 'agendaDateFormat'),
-                              g =
-                                0 === A &&
-                                a.default.createElement(
-                                  'td',
-                                  {
-                                    rowSpan: i.length,
-                                    className: 'rbc-agenda-date-cell',
-                                  },
-                                  c
-                                    ? a.default.createElement(c, {
-                                        day: e,
-                                        label: h,
-                                      })
-                                    : h
-                                )
-                            return a.default.createElement(
-                              'tr',
-                              {
-                                key: l + '_' + A,
-                                className: m.className,
-                                style: m.style,
-                              },
-                              g,
-                              a.default.createElement(
-                                'td',
-                                { className: 'rbc-agenda-time-cell' },
-                                C(e, d)
-                              ),
-                              a.default.createElement(
-                                'td',
-                                { className: 'rbc-agenda-event-cell' },
-                                s
-                                  ? a.default.createElement(s, {
-                                      event: d,
-                                      title: u,
-                                    })
-                                  : u
-                              )
-                            )
-                          }, [])
-                        })(e, m, i)
-                      })
-                    )
-                  )
+                      'div',
+                      { style: y.eventTitle },
+                      e.title
+                    ),
+                    a.default.createElement('div', { style: y.eventDate }, r)
+                  ),
+                  e.isLive && a.default.createElement(m, { isLive: !0 })
                 )
-              )
-            : a.default.createElement(
-                'span',
-                { className: 'rbc-agenda-empty' },
-                x.noEventsInRange
-              )
-        )
+              ),
+              e.id === C[0].id && 0 !== n
+                ? a.default.createElement(
+                    'div',
+                    {
+                      style: ((o = {
+                        marginTop: 4,
+                        marginBottom: 4,
+                        flex: 1,
+                        display: 'flex',
+                        height: 1,
+                        background: 'black',
+                        position: 'relative',
+                      }),
+                      (o.marginTop = 8),
+                      o),
+                    },
+                    a.default.createElement('div', {
+                      style: {
+                        width: 12,
+                        height: 12,
+                        borderRadius: 6,
+                        backgroundColor: 'black',
+                        position: 'absolute',
+                        top: -6,
+                      },
+                    })
+                  )
+                : A.length - 1 !== n &&
+                    a.default.createElement('div', {
+                      style: {
+                        marginTop: 4,
+                        marginBottom: 4,
+                        flex: 1,
+                        display: 'flex',
+                        height: 1,
+                        background: '#ebebeb',
+                      },
+                    })
+            )
+          })
       )
     }
     ;(p.propTypes = {}),
@@ -34724,7 +34762,57 @@ object-assign
         return r.format({ start: e, end: a }, 'agendaHeaderFormat')
       })
     var b = p
-    ;(n.default = b), (e.exports = n.default)
+    n.default = b
+    var m = function(e) {
+        var n = e.isLive,
+          t = e.liveButton,
+          o = e.event,
+          r = e.selected
+        return a.default.createElement(
+          'div',
+          { style: h.container },
+          n && t && t({ event: o, selected: r }),
+          n &&
+            !t &&
+            a.default.createElement(
+              'div',
+              { style: r ? h.selectedGoLive : h.goLive },
+              'Go Live'
+            )
+        )
+      },
+      h = {
+        container: {},
+        goLive: {
+          display: 'flex',
+          height: 40,
+          background: 'black',
+          color: 'white',
+          justifyContent: 'center',
+          alignItems: 'center',
+          align: 'center',
+          borderRadius: 5,
+          paddingRight: 32,
+          paddingLeft: 32,
+          fontSize: 18,
+          fontFamily: 'Circular Std Bold',
+        },
+        selectedGoLive: {
+          display: 'flex',
+          height: 40,
+          background: 'white',
+          color: 'black',
+          justifyContent: 'center',
+          alignItems: 'center',
+          align: 'center',
+          borderRadius: 5,
+          paddingRight: 32,
+          paddingLeft: 32,
+          fontSize: 18,
+          fontFamily: 'Circular Std Bold',
+        },
+      }
+    e.exports = n.default
   },
   function(e, n, t) {
     'use strict'

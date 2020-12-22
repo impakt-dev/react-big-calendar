@@ -168,8 +168,6 @@ export default class TimeGrid extends Component {
       longPressThreshold,
       resizable,
     } = this.props
-
-    console.log('----', this.props)
     width = width || this.state.gutterWidth
 
     let start = range[0],

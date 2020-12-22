@@ -9,6 +9,7 @@ import * as dates from './utils/dates'
 import { navigate } from './utils/constants'
 import { inRange } from './utils/eventLevels'
 import { isSelected } from './utils/selection'
+import moment from 'moment'
 
 function Agenda({
   selected,
@@ -148,39 +149,182 @@ function Agenda({
   let range = dates.range(date, end, 'day')
 
   events = events.filter(event => inRange(event, date, end, accessors))
+  const activeDay = events.filter(
+    event =>
+      moment(event.start).format('DD MM YY') === moment().format('DD MM YY')
+  )
 
   events.sort((a, b) => +accessors.start(a) - +accessors.start(b))
+  const styles = {
+    container: {
+      backgroundColor: 'white',
+      display: 'flex',
+      alignItems: 'center',
+      borderWidth: 2,
+      borderColor: 'red',
+    },
+    dateContainer: {
+      display: 'flex',
+      alignItems: 'flex-end',
+      marginRight: 8,
+      width: 50,
+    },
+    dayNumber: {
+      marginRight: 4,
+      fontSize: 24,
+      fontFamily: 'Circular Std Bold',
+    },
+    dayName: {
+      fontSize: 14,
+      paddingBottom: 4,
+      fontFamily: 'Circular Std Medium',
+    },
+    eventContainer: {
+      background: '#EBEBEB',
+      borderRadius: 5,
+      padding: 8,
+      flex: 1,
+      display: 'flex',
+      justifyContent: 'space-between',
+      // flexDirection: 'column'
+    },
+    eventTitle: {
+      fontFamily: 'Circular Std Bold',
+      fontSize: 16,
+    },
+    eventDate: {
+      fontFamily: 'Circular Std Medium',
+      fontSize: 14,
+    },
+  }
 
   return (
-    <div className="rbc-agenda-view">
-      {events.length !== 0 ? (
-        <React.Fragment>
-          <table ref={headerRef} className="rbc-agenda-table">
-            <thead>
-              <tr>
-                <th className="rbc-header" ref={dateColRef}>
-                  {messages.date}
-                </th>
-                <th className="rbc-header" ref={timeColRef}>
-                  {messages.time}
-                </th>
-                <th className="rbc-header">{messages.event}</th>
-              </tr>
-            </thead>
-          </table>
-          <div className="rbc-agenda-content" ref={contentRef}>
-            <table className="rbc-agenda-table">
-              <tbody ref={tbodyRef}>
-                {range.map((day, idx) => renderDay(day, events, idx))}
-              </tbody>
-            </table>
-          </div>
-        </React.Fragment>
-      ) : (
-        <span className="rbc-agenda-empty">{messages.noEventsInRange}</span>
-      )}
+    <div className="rbc-agenda-view" style={{ marginTop: 8 }}>
+      {events.length > 0 &&
+        events.map((event, idx) => {
+          const eventDate = `${moment(event.start)
+            .format('HH:mmA')
+            .toLowerCase()} - ${moment(event.end)
+            .format('HH:mmA')
+            .toLowerCase()}`
+          return (
+            <div key={idx}>
+              {event.id === activeDay[0].id && idx === 0 && (
+                <div
+                  style={{
+                    marginTop: 4,
+                    marginBottom: 4,
+                    flex: 1,
+                    display: 'flex',
+                    height: 1,
+                    background: 'black',
+                    position: 'relative',
+                    marginTop: 8,
+                  }}
+                >
+                  <div
+                    style={{
+                      width: 12,
+                      height: 12,
+                      borderRadius: 6,
+                      backgroundColor: 'black',
+                      position: 'absolute',
+                      top: -6,
+                    }}
+                  />
+                </div>
+              )}
+              <div style={styles.container}>
+                <div style={styles.dateContainer}>
+                  <div style={styles.dayNumber}>
+                    {moment(event.start).format('DD')}
+                  </div>
+                  <div style={styles.dayName}>
+                    {moment(event.start).format('dd')}
+                  </div>
+                </div>
+                <div style={styles.eventContainer}>
+                  <div>
+                    <div style={styles.eventTitle}>{event.title}</div>
+                    <div style={styles.eventDate}>{eventDate}</div>
+                  </div>
+                  {event.isLive && <GoLiveButton isLive={true} />}
+                </div>
+              </div>
+              {event.id === activeDay[0].id && idx !== 0 ? (
+                <div
+                  style={{
+                    marginTop: 4,
+                    marginBottom: 4,
+                    flex: 1,
+                    display: 'flex',
+                    height: 1,
+                    background: 'black',
+                    position: 'relative',
+                    marginTop: 8,
+                  }}
+                >
+                  <div
+                    style={{
+                      width: 12,
+                      height: 12,
+                      borderRadius: 6,
+                      backgroundColor: 'black',
+                      position: 'absolute',
+                      top: -6,
+                    }}
+                  />
+                </div>
+              ) : (
+                events.length - 1 !== idx && (
+                  <div
+                    style={{
+                      marginTop: 4,
+                      marginBottom: 4,
+                      flex: 1,
+                      display: 'flex',
+                      height: 1,
+                      background: '#ebebeb',
+                    }}
+                  />
+                )
+              )}
+            </div>
+          )
+        })}
     </div>
   )
+
+  // return (
+  //   <div className="rbc-agenda-view">
+  //     {events.length !== 0 ? (
+  //       <React.Fragment>
+  //         <table ref={headerRef} className="rbc-agenda-table">
+  //           <thead>
+  //             <tr>
+  //               <th className="rbc-header" ref={dateColRef}>
+  //                 {messages.date}
+  //               </th>
+  //               <th className="rbc-header" ref={timeColRef}>
+  //                 {messages.time}
+  //               </th>
+  //               <th className="rbc-header">{messages.event}</th>
+  //             </tr>
+  //           </thead>
+  //         </table>
+  //         <div className="rbc-agenda-content" ref={contentRef}>
+  //           <table className="rbc-agenda-table">
+  //             <tbody ref={tbodyRef}>
+  //               {range.map((day, idx) => renderDay(day, events, idx))}
+  //             </tbody>
+  //           </table>
+  //         </div>
+  //       </React.Fragment>
+  //     ) : (
+  //       <span className="rbc-agenda-empty">{messages.noEventsInRange}</span>
+  //     )}
+  //   </div>
+  // )
 }
 
 Agenda.propTypes = {
@@ -224,3 +368,48 @@ Agenda.title = (start, { length = Agenda.defaultProps.length, localizer }) => {
 }
 
 export default Agenda
+
+const GoLiveButton = ({ isLive, liveButton, event, selected }) => {
+  return (
+    <div style={styles.container}>
+      {isLive && liveButton && liveButton({ event, selected })}
+      {isLive && !liveButton && (
+        <div style={!selected ? styles.goLive : styles.selectedGoLive}>
+          Go Live
+        </div>
+      )}
+    </div>
+  )
+}
+
+const styles = {
+  container: {},
+  goLive: {
+    display: 'flex',
+    height: 40,
+    background: 'black',
+    color: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+    align: 'center',
+    borderRadius: 5,
+    paddingRight: 32,
+    paddingLeft: 32,
+    fontSize: 18,
+    fontFamily: 'Circular Std Bold',
+  },
+  selectedGoLive: {
+    display: 'flex',
+    height: 40,
+    background: 'white',
+    color: 'black',
+    justifyContent: 'center',
+    alignItems: 'center',
+    align: 'center',
+    borderRadius: 5,
+    paddingRight: 32,
+    paddingLeft: 32,
+    fontSize: 18,
+    fontFamily: 'Circular Std Bold',
+  },
+}

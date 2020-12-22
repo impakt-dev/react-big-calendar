@@ -11,7 +11,7 @@ const Basic = ({ localizer }) => (
     timeslots={2}
     showMultiDayTimes
     localizer={localizer}
-    defaultView="day"
+    defaultView="agenda"
     components={{
       liveButton: null,
     }}

@@ -107,18 +107,26 @@ export default [
     isLive: false,
   },
   {
-    id: 14,
+    id: 140,
     title: 'Yoga Course 101 - Clean Your Mind from night to morning',
     start: new Date(new Date().setHours(new Date().getHours())),
     end: new Date(new Date().setMinutes(new Date().getMinutes() + 180)),
     isLive: true,
   },
-  // {
-  //   id: 15,
-  //   title: 'Point in Time Event',
-  //   start: now,
-  //   end: now,
-  // },
+  {
+    id: 141,
+    title: 'Yoga Course 101 - Clean Your Mind from night to morning 2x',
+    start: new Date(new Date().setHours(new Date().getHours() + 8)),
+    end: new Date(new Date().setHours(new Date().getHours() + 9)),
+    isLive: false,
+  },
+  {
+    id: 145,
+    title: 'Yoga Course 101 - Clean Your Mind from night to morning x',
+    start: new Date(new Date().setHours(new Date().getHours() + 7)),
+    end: new Date(new Date().setHours(new Date().getHours() + 8)),
+    isLive: false,
+  },
   {
     id: 16,
     title: 'Video Record',
