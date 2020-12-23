@@ -33,8 +33,8 @@ class TimeGridHeader extends React.Component {
 
       const { className, style } = dayProp(date)
       const splittedData = label.split(' ')
-      const dayName = splittedData[0]
-      const dayNumber = splittedData[1].split('/')[0]
+      const dayName = splittedData[1]
+      const dayNumber = splittedData[0].split('/')[0]
       const isActiveDate =
         moment()
           .format('DD MM YY')
@@ -204,7 +204,7 @@ class TimeGridHeader extends React.Component {
               className={`rbc-row rbc-time-header-cell${
                 range.length <= 1 ? ' rbc-time-header-cell-single-day' : ''
               }`}
-              style={{ borderWidth: 2, borderColor: 'red', zIndex: 999 }}
+              style={{ zIndex: 999 }}
             >
               {this.renderHeaderCells(range)}
             </div>

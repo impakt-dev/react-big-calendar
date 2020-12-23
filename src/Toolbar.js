@@ -83,8 +83,6 @@ class Toolbar extends React.Component {
             this.view(e.target.value)
           }}
           style={{
-            borderWidth: '2px',
-            borderColor: '#909090',
             borderRadius: '4px',
             padding: '8px',
           }}

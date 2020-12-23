@@ -160,8 +160,6 @@ function Agenda({
       backgroundColor: 'white',
       display: 'flex',
       alignItems: 'center',
-      borderWidth: 2,
-      borderColor: 'red',
     },
     dateContainer: {
       display: 'flex',
@@ -212,7 +210,6 @@ function Agenda({
               {event.id === activeDay[0].id && idx === 0 && (
                 <div
                   style={{
-                    marginTop: 4,
                     marginBottom: 4,
                     flex: 1,
                     display: 'flex',

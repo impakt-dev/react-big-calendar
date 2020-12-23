@@ -34,13 +34,15 @@ export default class TimeGutter extends Component {
       >
         <div
           className={clsx('rbc-label', isNow && 'rbc-now')}
-          style={{ width: 50, borderBottom: 2, borderColor: 'red' }}
+          style={{ width: 75 }}
         >
           <span
-            style={{ position: 'absolute', left: 0, zIndex: 9990, top: -10 }}
+            style={{ position: 'absolute', left: 0, zIndex: 9990, top: -10, display: 'flex' }}
             className=""
           >
-            {localizer.format(value, 'timeGutterFormat')}
+            <span style={{ width: 40}}>{localizer.format(value, 'timeGutterFormat').split(' ')[0]}</span>
+            {' '}
+            <span>{localizer.format(value, 'timeGutterFormat').split(' ')[1]}</span>
           </span>
         </div>
         <div style={{ marginTop: 0, display: 'flex', flexDirection: 'column' }}>
@@ -50,7 +52,6 @@ export default class TimeGutter extends Component {
               width: 20,
               borderTop: 2,
               height: 1,
-              borderColor: '#ebebeb',
               background: '#ebebeb',
             }}
           />
@@ -60,7 +61,6 @@ export default class TimeGutter extends Component {
               width: 20,
               borderTop: 2,
               height: 1,
-              borderColor: '#ebebeb',
               background: '#ebebeb',
             }}
           />

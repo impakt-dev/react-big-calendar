@@ -37,9 +37,6 @@ export default class TimeSlotGroup extends Component {
                   slotProps.className,
                   isBordered ? 'rbc-time-slot-last-column' : {}
                 )}
-                style={{
-                  borderWidth: 1,
-                }}
               >
                 {renderSlot && renderSlot(value, idx, isBordered)}
               </div>
