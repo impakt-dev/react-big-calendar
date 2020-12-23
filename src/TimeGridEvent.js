@@ -23,27 +23,26 @@ function TimeGridEvent(props) {
     onKeyPress,
     components: { event: Event, eventWrapper: EventWrapper, liveButton },
   } = props
-  let title = accessors.title(event)
-  let tooltip = accessors.tooltip(event)
-  let end = accessors.end(event)
-  let start = accessors.start(event)
-  const splittedLabel = label.split(' – ')
-  const splittedStartLabel = splittedLabel[0].split(' ')
-  const splittedEndLabel = splittedLabel[1].split(' ')
-  const processedLabel = `${
-    splittedStartLabel[0]
-  }${splittedStartLabel[1].toLowerCase()} - ${
-    splittedEndLabel[0]
-  }${splittedEndLabel[1].toLowerCase()}`
-  let userProps = getters.eventProp(event, start, end, selected)
+  const title = accessors.title(event)
+  const tooltip = accessors.tooltip(event)
+  const end = accessors.end(event)
+  const start = accessors.start(event)
+  const splittedLabel = label && label.split(' – ')
+  const splittedStartLabel = splittedLabel && splittedLabel[0] && splittedLabel[0].split(' ')
+  const splittedEndLabel = splittedLabel && splittedLabel[1] && splittedLabel[1].split(' ')
+  const startLabel = `${splittedStartLabel && splittedStartLabel[0] && splittedStartLabel[0].toLowerCase()}${splittedStartLabel&&splittedStartLabel[1]&&splittedStartLabel[1].toLowerCase()}`
+  const endLabel = `${splittedEndLabel && splittedEndLabel[0] && splittedEndLabel[0].toLowerCase()}${splittedEndLabel && splittedEndLabel[1] && splittedEndLabel[1].toLowerCase()}`
+  const processedLabel = `${startLabel} - ${endLabel}`;
+ 
+  const userProps = getters.eventProp(event, start, end, selected)
 
-  let { height, top, width, xOffset } = style
+  const { height, top, width, xOffset } = style
   const inner = [
     <div key="2" className="rbc-event-content">
       {Event ? <Event event={event} title={title} /> : title}
     </div>,
     <div key="1" className="rbc-event-label">
-      {processedLabel.toLowerCase()}
+      {processedLabel}
     </div>,
   ]
 
