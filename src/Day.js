@@ -9,7 +9,7 @@ class Day extends React.Component {
   render() {
     let { date, ...props } = this.props
     let range = Day.range(date)
-    const dayName = moment(this.props.date.toString()).format('dd')
+    const dayName = moment(this.props.date.toString()).format('ddd')
     const dayNumber = moment(this.props.date.toString()).format('DD')
 
     return (

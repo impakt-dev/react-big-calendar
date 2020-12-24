@@ -218,7 +218,7 @@ function Agenda({
                           {moment(key).format('DD')}
                         </div>
                           <div style={styles.dayName}>
-                            {moment(key).format('dd')}
+                            {moment(key).format('ddd')}
                           </div></>)}
                       </div>}
                       <div style={styles.eventContainer}>
