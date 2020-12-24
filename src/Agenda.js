@@ -31,6 +31,35 @@ function Agenda({
     _adjustHeader()
   })
 
+  const _adjustHeader = () => {
+    if (!tbodyRef.current) return
+
+    let header = headerRef.current
+    let firstRow = tbodyRef.current.firstChild
+
+    if (!firstRow) return
+
+    let isOverflowing =
+      contentRef.current.scrollHeight > contentRef.current.clientHeight
+
+    let _widths = []
+    let widths = _widths
+
+    _widths = [getWidth(firstRow.children[0]), getWidth(firstRow.children[1])]
+
+    if (widths[0] !== _widths[0] || widths[1] !== _widths[1]) {
+      dateColRef.current.style.width = _widths[0] + 'px'
+      timeColRef.current.style.width = _widths[1] + 'px'
+    }
+
+    if (isOverflowing) {
+      addClass(header, 'rbc-header-overflowing')
+      header.style.marginRight = scrollbarSize() + 'px'
+    } else {
+      removeClass(header, 'rbc-header-overflowing')
+    }
+  }
+
   const renderDay = (day, events, dayKey) => {
     const { event: Event, date: AgendaDate } = components
 
@@ -64,97 +93,33 @@ function Agenda({
           false
         )
 
-      return (
-        <tr
-          key={dayKey + '_' + idx}
-          className={userProps.className}
-          style={userProps.style}
-        >
-          {first}
-          <td className="rbc-agenda-time-cell">{timeRangeLabel(day, event)}</td>
-          <td className="rbc-agenda-event-cell">
-            {Event ? <Event event={event} title={title} /> : title}
-          </td>
-        </tr>
-      )
+        console.log('---', event)
+
+      return null
     }, [])
   }
 
-  const timeRangeLabel = (day, event) => {
-    let labelClass = '',
-      TimeComponent = components.time,
-      label = localizer.messages.allDay
-
-    let end = accessors.end(event)
-    let start = accessors.start(event)
-
-    if (!accessors.allDay(event)) {
-      if (dates.eq(start, end)) {
-        label = localizer.format(start, 'agendaTimeFormat')
-      } else if (dates.eq(start, end, 'day')) {
-        label = localizer.format({ start, end }, 'agendaTimeRangeFormat')
-      } else if (dates.eq(day, start, 'day')) {
-        label = localizer.format(start, 'agendaTimeFormat')
-      } else if (dates.eq(day, end, 'day')) {
-        label = localizer.format(end, 'agendaTimeFormat')
-      }
-    }
-
-    if (dates.gt(day, start, 'day')) labelClass = 'rbc-continues-prior'
-    if (dates.lt(day, end, 'day')) labelClass += ' rbc-continues-after'
-
-    return (
-      <span className={labelClass.trim()}>
-        {TimeComponent ? (
-          <TimeComponent event={event} day={day} label={label} />
-        ) : (
-          label
-        )}
-      </span>
-    )
-  }
-
-  const _adjustHeader = () => {
-    if (!tbodyRef.current) return
-
-    let header = headerRef.current
-    let firstRow = tbodyRef.current.firstChild
-
-    if (!firstRow) return
-
-    let isOverflowing =
-      contentRef.current.scrollHeight > contentRef.current.clientHeight
-
-    let _widths = []
-    let widths = _widths
-
-    _widths = [getWidth(firstRow.children[0]), getWidth(firstRow.children[1])]
-
-    if (widths[0] !== _widths[0] || widths[1] !== _widths[1]) {
-      dateColRef.current.style.width = _widths[0] + 'px'
-      timeColRef.current.style.width = _widths[1] + 'px'
-    }
-
-    if (isOverflowing) {
-      addClass(header, 'rbc-header-overflowing')
-      header.style.marginRight = scrollbarSize() + 'px'
-    } else {
-      removeClass(header, 'rbc-header-overflowing')
-    }
-  }
 
   let { messages } = localizer
   let end = dates.add(date, length, 'day')
 
   let range = dates.range(date, end, 'day')
-
-  events = events.filter(event => inRange(event, date, end, accessors))
   const activeDay = events.filter(
     event =>
-      moment(event.start).format('DD MM YY') === moment().format('DD MM YY')
+      moment(event.start).format('DD MM YY') >= moment().format('DD MM YY')
   )
-
+  events = events.filter(event => inRange(event, date, end, accessors))
   events.sort((a, b) => +accessors.start(a) - +accessors.start(b))
+
+  const groupedByDate = {};
+
+  events.map(event => {
+    if (!groupedByDate[moment(event.start).format('dd MM DD YYYY')]) {
+      groupedByDate[moment(event.start).format('dd MM DD YYYY')] = [];
+    }
+    groupedByDate[moment(event.start).format('dd MM DD YYYY')].push(event);
+  });
+
   const styles = {
     container: {
       backgroundColor: 'white',
@@ -179,9 +144,10 @@ function Agenda({
     },
     eventContainer: {
       background: '#EBEBEB',
+      flex: 1,
       borderRadius: 5,
       padding: 8,
-      flex: 1,
+      marginBottom: 8,
       display: 'flex',
       justifyContent: 'space-between',
       // flexDirection: 'column'
@@ -196,132 +162,82 @@ function Agenda({
     },
   }
 
+
+  if (components.renderAgenda) {
+    return components.renderAgenda({
+      events,
+      date,
+    })
+  }
+
+
   return (
     <div className="rbc-agenda-view" style={{ marginTop: 8 }}>
-      {events.length > 0 &&
-        events.map((event, idx) => {
-          const eventDate = `${moment(event.start)
-            .format('HH:mmA')
-            .toLowerCase()} - ${moment(event.end)
-            .format('HH:mmA')
-            .toLowerCase()}`
-          return (
-            <div key={idx}>
-              {event.id === activeDay[0].id && idx === 0 && (
-                <div
-                  style={{
-                    marginBottom: 4,
-                    flex: 1,
-                    display: 'flex',
-                    height: 1,
-                    background: 'black',
-                    position: 'relative',
-                    marginTop: 8,
-                  }}
-                >
-                  <div
-                    style={{
-                      width: 12,
-                      height: 12,
-                      borderRadius: 6,
-                      backgroundColor: 'black',
-                      position: 'absolute',
-                      top: -6,
-                    }}
-                  />
-                </div>
-              )}
-              <div style={styles.container}>
-                <div style={styles.dateContainer}>
-                  <div style={styles.dayNumber}>
-                    {moment(event.start).format('DD')}
-                  </div>
-                  <div style={styles.dayName}>
-                    {moment(event.start).format('dd')}
-                  </div>
-                </div>
-                <div style={styles.eventContainer}>
+      {range.map((day, idx) => renderDay(day, events, idx))}
+
+      {Object.keys(groupedByDate).length !== 0 ? Object.keys(groupedByDate).map((key) => {
+        const isShowTimeIndicator = moment(activeDay[0]).format('DD MM YYYY') === moment(key).format('DD MM YYYY');
+
+        return (
+          <>
+            {
+              groupedByDate[key].map((event, id) => {
+                const eventDate = `${moment(event.start)
+                  .format('HH:mmA')
+                  .toLowerCase()} - ${moment(event.end)
+                    .format('HH:mmA')
+                    .toLowerCase()}`;
+
+                return (
                   <div>
-                    <div style={styles.eventTitle}>{event.title}</div>
-                    <div style={styles.eventDate}>{eventDate}</div>
+                    { isShowTimeIndicator && id === 0 && <div
+                      className='rbc-current-time-indicator'
+                      style={{
+                        marginBottom: 4,
+                        display: 'flex',
+                        height: 2,
+                        backgroundColor: 'black',
+                        position: 'relative',
+                        marginTop: 8,
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: 12,
+                          height: 12,
+                          borderRadius: 6,
+                          backgroundColor: 'black',
+                          position: 'absolute',
+                          top: -6,
+                        }}
+                      />
+                    </div>}
+                    <div style={styles.container}>
+                      {<div style={styles.dateContainer}>
+                        {id === 0 && (<><div style={styles.dayNumber}>
+                          {moment(key).format('DD')}
+                        </div>
+                          <div style={styles.dayName}>
+                            {moment(key).format('dd')}
+                          </div></>)}
+                      </div>}
+                      <div style={styles.eventContainer}>
+                        <div>
+                          <div style={styles.eventTitle}>{event.title}</div>
+                          <div style={styles.eventDate}>{eventDate}</div>
+                        </div>
+                        {event.isLive && <GoLiveButton isLive={true} />}
+                      </div>
+                    </div>
                   </div>
-                  {event.isLive && <GoLiveButton isLive={true} />}
-                </div>
-              </div>
-              {event.id === activeDay[0].id && idx !== 0 ? (
-                <div
-                  style={{
-                    marginTop: 4,
-                    marginBottom: 4,
-                    flex: 1,
-                    display: 'flex',
-                    height: 1,
-                    background: 'black',
-                    position: 'relative',
-                    marginTop: 8,
-                  }}
-                >
-                  <div
-                    style={{
-                      width: 12,
-                      height: 12,
-                      borderRadius: 6,
-                      backgroundColor: 'black',
-                      position: 'absolute',
-                      top: -6,
-                    }}
-                  />
-                </div>
-              ) : (
-                events.length - 1 !== idx && (
-                  <div
-                    style={{
-                      marginTop: 4,
-                      marginBottom: 4,
-                      flex: 1,
-                      display: 'flex',
-                      height: 1,
-                      background: '#ebebeb',
-                    }}
-                  />
                 )
-              )}
-            </div>
-          )
-        })}
+              })
+            }
+          </>
+        )
+      }) : <span className="rbc-agenda-empty">{messages.noEventsInRange}</span>}
     </div>
   )
-
-  // return (
-  //   <div className="rbc-agenda-view">
-  //     {events.length !== 0 ? (
-  //       <React.Fragment>
-  //         <table ref={headerRef} className="rbc-agenda-table">
-  //           <thead>
-  //             <tr>
-  //               <th className="rbc-header" ref={dateColRef}>
-  //                 {messages.date}
-  //               </th>
-  //               <th className="rbc-header" ref={timeColRef}>
-  //                 {messages.time}
-  //               </th>
-  //               <th className="rbc-header">{messages.event}</th>
-  //             </tr>
-  //           </thead>
-  //         </table>
-  //         <div className="rbc-agenda-content" ref={contentRef}>
-  //           <table className="rbc-agenda-table">
-  //             <tbody ref={tbodyRef}>
-  //               {range.map((day, idx) => renderDay(day, events, idx))}
-  //             </tbody>
-  //           </table>
-  //         </div>
-  //       </React.Fragment>
-  //     ) : (
-  //       <span className="rbc-agenda-empty">{messages.noEventsInRange}</span>
-  //     )}
-  //   </div>
-  // )
 }
 
 Agenda.propTypes = {
