@@ -93,8 +93,6 @@ function Agenda({
           false
         )
 
-        console.log('---', event)
-
       return null
     }, [])
   }
@@ -114,10 +112,10 @@ function Agenda({
   const groupedByDate = {};
 
   events.map(event => {
-    if (!groupedByDate[moment(event.start).format('dd MM DD YYYY')]) {
-      groupedByDate[moment(event.start).format('dd MM DD YYYY')] = [];
+    if (!groupedByDate[moment(event.start).format('YYYY-MM-DD')]) {
+      groupedByDate[moment(event.start).format('YYYY-MM-DD')] = [];
     }
-    groupedByDate[moment(event.start).format('dd MM DD YYYY')].push(event);
+    groupedByDate[moment(event.start).format('YYYY-MM-DD')].push(event);
   });
 
   const styles = {
@@ -130,7 +128,7 @@ function Agenda({
       display: 'flex',
       alignItems: 'flex-end',
       marginRight: 8,
-      width: 50,
+      width: 60,
     },
     dayNumber: {
       marginRight: 4,
@@ -179,7 +177,7 @@ function Agenda({
         const isShowTimeIndicator = moment(activeDay[0]).format('DD MM YYYY') === moment(key).format('DD MM YYYY');
 
         return (
-          <>
+          <React.Fragment key={key}>
             {
               groupedByDate[key].map((event, id) => {
                 const eventDate = `${moment(event.start)
@@ -189,7 +187,7 @@ function Agenda({
                     .toLowerCase()}`;
 
                 return (
-                  <div>
+                  <div key={event.id}>
                     { isShowTimeIndicator && id === 0 && <div
                       className='rbc-current-time-indicator'
                       style={{
@@ -233,7 +231,7 @@ function Agenda({
                 )
               })
             }
-          </>
+          </React.Fragment>
         )
       }) : <span className="rbc-agenda-empty">{messages.noEventsInRange}</span>}
     </div>

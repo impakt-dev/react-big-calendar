@@ -101,7 +101,7 @@ TimeGutter.propTypes = {
   getNow: PropTypes.func.isRequired,
   components: PropTypes.object.isRequired,
   getters: PropTypes.object,
-  lastColumnDate: PropTypes.string,
+  lastColumnDate:PropTypes.instanceOf(Date),
   localizer: PropTypes.object.isRequired,
   resource: PropTypes.string,
 }
