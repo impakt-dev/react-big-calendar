@@ -30,7 +30,7 @@ export default class TimeGutter extends Component {
     const isNow = this.slotMetrics.dateIsInGroup(getNow(), idx)
     return (
       <div
-      className={localizer.format(value, 'timeGutterFormat').split(' ')[0] === '4:00' && localizer.format(value, 'timeGutterFormat').split(' ')[1] === 'AM' ? 'eightAm': ''}
+      className={localizer.format(value, 'timeGutterFormat').split(' ')[0] === '8:00' && localizer.format(value, 'timeGutterFormat').split(' ')[1] === 'AM' ? 'eightAm': ''}
         style={{ display: 'flex', flexDirection: 'row', position: 'relative' }}
       >
         <div
