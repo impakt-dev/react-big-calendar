@@ -104,7 +104,9 @@ export default [
     title: 'Yoga Course 101 - Clean Your Mind from morning to night',
     start: new Date(new Date().setHours(new Date().getHours() - 10 * 48)),
     end: new Date(new Date().setHours(new Date().getHours() - 10 * 44)),
-    isLive: false,
+    variant: '',
+    isLive: true,
+    isFinished: false,
   },
   {
     id: 140,
