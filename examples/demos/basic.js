@@ -1,6 +1,6 @@
 import moment from 'moment'
 import React from 'react'
-import { Calendar, momentLocalizer } from 'react-big-calendar'
+import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
 import events from '../events'
 import {  ChakraProvider}  from "@chakra-ui/react"
 
