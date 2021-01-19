@@ -27,6 +27,8 @@ function Agenda({
   const contentRef = useRef(null)
   const tbodyRef = useRef(null)
 
+  const Component = components.agendaComponent;
+
   useEffect(() => {
     _adjustHeader()
   })
@@ -210,6 +212,7 @@ function Agenda({
                         }}
                       />
                     </div>}
+
                     <div style={styles.container}>
                       {<div style={styles.dateContainer}>
                         {id === 0 && (<><div style={styles.dayNumber}>
@@ -219,13 +222,7 @@ function Agenda({
                             {moment(key).format('ddd')}
                           </div></>)}
                       </div>}
-                      <div style={styles.eventContainer}>
-                        <div>
-                          <div style={styles.eventTitle}>{event.title}</div>
-                          <div style={styles.eventDate}>{eventDate}</div>
-                        </div>
-                        {event.isLive && <GoLiveButton isLive={true} />}
-                      </div>
+                      <Component title={event.title} variant={event.variant}/>
                     </div>
                   </div>
                 )
@@ -279,48 +276,3 @@ Agenda.title = (start, { length = Agenda.defaultProps.length, localizer }) => {
 }
 
 export default Agenda
-
-const GoLiveButton = ({ isLive, liveButton, event, selected }) => {
-  return (
-    <div style={styles.container}>
-      {isLive && liveButton && liveButton({ event, selected })}
-      {isLive && !liveButton && (
-        <div style={!selected ? styles.goLive : styles.selectedGoLive}>
-          Go Live
-        </div>
-      )}
-    </div>
-  )
-}
-
-const styles = {
-  container: {},
-  goLive: {
-    display: 'flex',
-    height: 40,
-    background: 'black',
-    color: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
-    align: 'center',
-    borderRadius: 5,
-    paddingRight: 32,
-    paddingLeft: 32,
-    fontSize: 18,
-    fontFamily: 'Circular Std Bold',
-  },
-  selectedGoLive: {
-    display: 'flex',
-    height: 40,
-    background: 'white',
-    color: 'black',
-    justifyContent: 'center',
-    alignItems: 'center',
-    align: 'center',
-    borderRadius: 5,
-    paddingRight: 32,
-    paddingLeft: 32,
-    fontSize: 18,
-    fontFamily: 'Circular Std Bold',
-  },
-}

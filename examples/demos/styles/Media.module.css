@@ -1,0 +1,44 @@
+.uploadBox {
+  border: 1px dashed gray;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 3px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.button {
+  background-color: #f9f9f9;
+  padding: 8px 16px;
+  margin: 8px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.mediaUpload {
+  border: 1px dashed gray;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 3px;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dragActive {
+  border: 2px dashed #2196f3;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.progressBar {
+  width: 80%;
+  bottom: 1em;
+  left: 1em;
+}

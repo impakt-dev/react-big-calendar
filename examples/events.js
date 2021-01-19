@@ -104,8 +104,8 @@ export default [
     title: 'Yoga Course 101 - Clean Your Mind from morning to night',
     start: new Date(new Date().setHours(new Date().getHours() - 10 * 48)),
     end: new Date(new Date().setHours(new Date().getHours() - 10 * 44)),
-    variant: '',
-    isLive: true,
+    variant: 'test',
+    isLive: false,
     isFinished: false,
   },
   {
@@ -114,6 +114,7 @@ export default [
     start: new Date(new Date().setHours(new Date().getHours())),
     end: new Date(new Date().setMinutes(new Date().getMinutes() + 180)),
     isLive: true,
+    variant: 'upcoming'
   },
   {
     id: 141,
@@ -121,6 +122,7 @@ export default [
     start: new Date(new Date().setHours(new Date().getHours() + 8)),
     end: new Date(new Date().setHours(new Date().getHours() + 9)),
     isLive: false,
+    variant: 'canceled'
   },
   {
     id: 145,
@@ -128,6 +130,7 @@ export default [
     start: new Date(new Date().setHours(new Date().getHours() + 7)),
     end: new Date(new Date().setHours(new Date().getHours() + 8)),
     isLive: false,
+    variant: 'completed'
   },
   {
     id: 147,
@@ -135,6 +138,7 @@ export default [
     start: new Date(new Date().setHours(new Date().getHours() + 1)),
     end: new Date(new Date().setHours(new Date().getHours() + 3)),
     isLive: false,
+    variant: 'next'
   },
   { 
     id: 146,
