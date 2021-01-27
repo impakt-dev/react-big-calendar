@@ -17,13 +17,12 @@ const Basic = ({  }) => (
       timeslots={2}
       showMultiDayTimes
       localizer={localizer}
-      defaultView='agenda'
+      defaultView='week'
       components={{
-        liveButton: null,
         dayComponent: () =>  <Box w='full'><SessionStatusCard sessionName={'title'} variant={'variant'} sessionTime={'time'} size={'size'}/></Box>,
         monthEventComponent: () => null,
         test: () => {},
-      agendaComponent: ({ title, time, variant, size }) => <Box w='full'><SessionStatusCard sessionName={title} variant={variant} sessionTime={time} size={size}/></Box>
+        sessionCard: ({ title, startTime, endTime, variant, size, rating, onClick }) => <Box w="full"><SessionStatusCard sessionName={title} variant={variant} startTime={startTime} endTime={endTime} size={size} rating={rating} onClick={onClick} /></Box>
       }}
     />
   </ChakraProvider>
