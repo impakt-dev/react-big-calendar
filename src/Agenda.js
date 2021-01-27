@@ -27,7 +27,7 @@ function Agenda({
   const contentRef = useRef(null)
   const tbodyRef = useRef(null)
 
-  const Component = components.agendaComponent;
+  const SessionCard = components.sessionCard;
 
   useEffect(() => {
     _adjustHeader()
@@ -222,7 +222,7 @@ function Agenda({
                             {moment(key).format('ddd')}
                           </div></>)}
                       </div>}
-                      <Component title={event.title} variant={event.variant}/>
+                      <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} size="lg" rating={40} onClick={() => {}} />
                     </div>
                   </div>
                 )
