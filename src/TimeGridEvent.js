@@ -21,29 +21,18 @@ function TimeGridEvent(props) {
     onClick,
     onDoubleClick,
     onKeyPress,
-    components: { event: Event, eventWrapper: EventWrapper, liveButton },
+    components: { eventWrapper: EventWrapper, sessionCard: SessionCard },
   } = props
-  const title = accessors.title(event)
   const tooltip = accessors.tooltip(event)
   const end = accessors.end(event)
   const start = accessors.start(event)
-  const splittedLabel = label && label.split(' – ')
-  const splittedStartLabel = splittedLabel && splittedLabel[0] && splittedLabel[0].split(' ')
-  const splittedEndLabel = splittedLabel && splittedLabel[1] && splittedLabel[1].split(' ')
-  const startLabel = `${splittedStartLabel && splittedStartLabel[0] && splittedStartLabel[0].toLowerCase()}${splittedStartLabel&&splittedStartLabel[1]&&splittedStartLabel[1].toLowerCase()}`
-  const endLabel = `${splittedEndLabel && splittedEndLabel[0] && splittedEndLabel[0].toLowerCase()}${splittedEndLabel && splittedEndLabel[1] && splittedEndLabel[1].toLowerCase()}`
-  const processedLabel = `${startLabel} - ${endLabel}`;
  
   const userProps = getters.eventProp(event, start, end, selected)
 
-  const { height, top, width, xOffset } = style
+  const { top, width, xOffset } = style
   const inner = [
-    <div key="2" className="rbc-event-content">
-      {Event ? <Event event={event} title={title} /> : title}
-    </div>,
-    <div key="1" className="rbc-event-label">
-      {processedLabel}
-    </div>,
+    // week/workWeek view
+    <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} size="md" rating={40} onClick={() => {}} />
   ]
 
   return (
@@ -57,7 +46,8 @@ function TimeGridEvent(props) {
           top: stringifyPercent(top),
           [rtl ? 'right' : 'left']: stringifyPercent(xOffset),
           width: stringifyPercent(width),
-          height: stringifyPercent(height),
+          height: 'auto',
+          padding: 0
         }}
         title={
           tooltip
@@ -72,13 +62,8 @@ function TimeGridEvent(props) {
       >
         {props.view !== 'day' && inner}
         {props.view === 'day' && (
-          <EventItem
-            isLive={event.isLive}
-            inner={inner}
-            liveButton={liveButton}
-            event={event}
-            selected={props.selected}
-          />
+          // Day view
+          <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} size="lg" rating={40} onClick={() => {}} />
         )}
       </div>
     </EventWrapper>
