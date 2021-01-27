@@ -8,6 +8,7 @@ export default [
     start: new Date(2015, 3, 0),
     end: new Date(2015, 3, 1),
     variant: 'upcoming',
+    handleClick: () => {},
   },
   {
     id: 1,
@@ -15,6 +16,8 @@ export default [
     start: new Date(2015, 3, 7),
     end: new Date(2015, 3, 10),
     variant: 'completed',
+    rating: 40,
+    handleClick: () => {},
   },
 
   {
@@ -23,6 +26,7 @@ export default [
     start: new Date(2016, 2, 13, 0, 0, 0),
     end: new Date(2016, 2, 20, 0, 0, 0),
     variant: 'next',
+    handleClick: () => {},
   },
 
   {
@@ -31,6 +35,7 @@ export default [
     start: new Date(2016, 10, 6, 0, 0, 0),
     end: new Date(2016, 10, 13, 0, 0, 0),
     variant: 'canceled',
+    handleClick: () => {},
   },
 
   {
@@ -39,6 +44,7 @@ export default [
     start: new Date(2015, 3, 9, 0, 0, 0),
     end: new Date(2015, 3, 10, 0, 0, 0),
     variant: 'upcoming',
+    handleClick: () => {},
   },
   {
     id: 5,
@@ -47,6 +53,7 @@ export default [
     end: new Date(2015, 3, 13),
     desc: 'Big conference for important people',
     variant: 'next',
+    handleClick: () => {},
   },
   {
     id: 6,
@@ -55,6 +62,7 @@ export default [
     end: new Date(2015, 3, 12, 12, 30, 0, 0),
     desc: 'Pre-meeting meeting, to prepare for the meeting',
     variant: 'addSession',
+    handleClick: () => {},
   },
   {
     id: 7,
@@ -63,6 +71,7 @@ export default [
     end: new Date(2015, 3, 12, 13, 0, 0, 0),
     desc: 'Power lunch',
     variant: 'canceled',
+    handleClick: () => {},
   },
   {
     id: 8,
@@ -70,6 +79,7 @@ export default [
     start: new Date(2015, 3, 12, 14, 0, 0, 0),
     end: new Date(2015, 3, 12, 15, 0, 0, 0),
     variant: 'upcoming',
+    handleClick: () => {},
   },
   {
     id: 9,
@@ -78,6 +88,7 @@ export default [
     end: new Date(2015, 3, 12, 17, 30, 0, 0),
     desc: 'Most important meal of the day',
     variant: 'next',
+    handleClick: () => {},
   },
   {
     id: 10,
@@ -85,6 +96,8 @@ export default [
     start: new Date(2015, 3, 12, 20, 0, 0, 0),
     end: new Date(2015, 3, 12, 21, 0, 0, 0),
     variant: 'completed',
+    rating: 40,
+    handleClick: () => {},
   },
   {
     id: 11,
@@ -92,6 +105,7 @@ export default [
     start: new Date(2015, 3, 13, 7, 0, 0),
     end: new Date(2015, 3, 13, 10, 30, 0),
     variant: 'canceled',
+    handleClick: () => {},
   },
   {
     id: 12,
@@ -99,6 +113,7 @@ export default [
     start: new Date(2015, 3, 17, 19, 30, 0),
     end: new Date(2015, 3, 18, 2, 0, 0),
     variant: 'addSession',
+    handleClick: () => {},
   },
   {
     id: 12.5,
@@ -106,6 +121,7 @@ export default [
     start: new Date(2015, 3, 17, 19, 30, 0),
     end: new Date(2015, 3, 17, 23, 30, 0),
     variant: 'upcoming',
+    handleClick: () => {},
   },
   {
     id: 13,
@@ -113,6 +129,7 @@ export default [
     start: new Date(2015, 3, 20, 19, 30, 0),
     end: new Date(2015, 3, 22, 2, 0, 0),
     variant: 'next',
+    handleClick: () => {},
   },
   {
     id: 14,
@@ -120,41 +137,50 @@ export default [
     end: new Date(new Date().setHours(new Date().getHours() - 10 * 44)),
     title: 'Yoga Course 101 - Clean Your Mind from morning to night',
     variant: 'completed',
+    rating: 40,
+    handleClick: () => {},
   },
   {
     id: 140,
     title: 'Yoga Course 101 - Clean Your Mind from night to morninggg',
     start: new Date(new Date().setHours(new Date().getHours() + 0.5 )),
     end: new Date(new Date().setMinutes(new Date().getMinutes() + 1)),
-    variant: 'canceled'
+    variant: 'canceled',
+    handleClick: () => {},
   },
   {
     id: 141,
     title: 'Yoga Course 101 - Clean Your Mind from night to morning 2x',
     start: new Date(new Date().setHours(new Date().getHours() + 0.5)),
     end: new Date(new Date().setHours(new Date().getHours() + 1)),
-    variant: 'next'
+    variant: 'next',
+    handleClick: () => {},
   },
   {
     id: 145,
     title: 'Yoga Course 101 - Clean Your Mind from night to morning x',
     start: new Date(new Date().setHours(new Date().getHours() + 7)),
     end: new Date(new Date().setHours(new Date().getHours() + 8)),
-    variant: 'completed'
+    variant: 'completed',
+    rating: 40,
+    handleClick: () => {}
   },
   {
     id: 147,
     title: 'Yoga Course 101 - Clean Your Mind from night to morning',
     start: new Date(new Date().setHours(new Date().getHours() + 0.5)),
     end: new Date(new Date().setHours(new Date().getHours() + 1)),
-    variant: 'next'
+    variant: 'next',
+    handleClick: () => {},
   },
   { 
     id: 146,
     title: 'Yoga Course 101 - Clean Your Mind from night to morning x',
     start: new Date(new Date().setHours(new Date().getHours() + 48)),
     end: new Date(new Date().setHours(new Date().getHours() + 49)),
-    variant: 'completed'
+    variant: 'completed',
+    rating: 40,
+    handleClick: () => {}
   },
   { 
     id: 147,
@@ -162,6 +188,7 @@ export default [
     start: new Date(new Date().setHours(new Date().getHours() + 96)),
     end: new Date(new Date().setHours(new Date().getHours() + 98)),
     variant: 'canceled',
+    handleClick: () => {},
   },
   {
     id: 16,
@@ -169,6 +196,7 @@ export default [
     start: new Date(2015, 3, 14, 15, 30, 0),
     end: new Date(2015, 3, 14, 19, 0, 0),
     variant: 'upcoming',
+    handleClick: () => {},
   },
   {
     id: 17,
@@ -176,6 +204,7 @@ export default [
     start: new Date(2015, 3, 14, 16, 30, 0),
     end: new Date(2015, 3, 14, 20, 0, 0),
     variant: 'addSession',
+    handleClick: () => {},
   },
   {
     id: 18,
@@ -183,6 +212,8 @@ export default [
     start: new Date(2015, 3, 14, 16, 30, 0),
     end: new Date(2015, 3, 14, 17, 30, 0),
     variant: 'completed',
+    rating: 40,
+    handleClick: () => {},
   },
   {
     id: 19,
@@ -190,6 +221,7 @@ export default [
     start: new Date(2015, 3, 14, 17, 30, 0),
     end: new Date(2015, 3, 14, 20, 30, 0),
     variant: 'canceled',
+    handleClick: () => {},
   },
   {
     id: 20,
@@ -197,6 +229,7 @@ export default [
     start: new Date(2015, 3, 14, 17, 0, 0),
     end: new Date(2015, 3, 14, 18, 30, 0),
     variant: 'upcoming',
+    handleClick: () => {},
   },
   {
     id: 21,
@@ -204,6 +237,7 @@ export default [
     start: new Date(2015, 3, 14, 17, 0, 0),
     end: new Date(2015, 3, 14, 18, 30, 0),
     variant: 'next',
+    handleClick: () => {},
   },
   {
     id: 22,
@@ -211,6 +245,7 @@ export default [
     start: new Date(2015, 3, 14, 17, 30, 0),
     end: new Date(2015, 3, 14, 19, 0, 0),
     variant: 'addSession',
+    handleClick: () => {},
   },
   {
     id: 23,
@@ -218,5 +253,6 @@ export default [
     start: new Date(2015, 3, 14, 18, 30, 0),
     end: new Date(2015, 3, 14, 20, 0, 0),
     variant: 'next',
+    handleClick: () => {},
   },
 ]
