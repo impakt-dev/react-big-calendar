@@ -64,8 +64,10 @@ export default {
     )
   },
 
-  renderSpan(slots, len, key, content = ' ') {
+  renderSpan(slots, len, key, content = {}) {
     let per = (Math.abs(len) / slots) * 100 + '%'
+    const { props: { components: { sessionCard: SessionCard } = {} } = {} } = content
+    const { props: { event } = {} } = content
 
     return (
       <div
@@ -74,7 +76,11 @@ export default {
         // IE10/11 need max-width. flex-basis doesn't respect box-sizing
         style={{ WebkitFlexBasis: per, flexBasis: per, maxWidth: per }}
       >
-        {content}
+        {
+          //month view
+          event && <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} size="sm" rating={40} onClick={() => {}} />
+        }
+        {/* {content} */}
       </div>
     )
   },
