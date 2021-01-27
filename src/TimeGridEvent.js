@@ -32,7 +32,7 @@ function TimeGridEvent(props) {
   const { top, width, xOffset } = style
   const inner = [
     // week/workWeek view
-    <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} size="md" rating={40} onClick={() => {}} />
+    <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} size="md" rating={event.rating} onClick={event.handleClick} />
   ]
 
   return (
@@ -63,7 +63,7 @@ function TimeGridEvent(props) {
         {props.view !== 'day' && inner}
         {props.view === 'day' && (
           // Day view
-          <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} size="lg" rating={40} onClick={() => {}} />
+          <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} size="lg" rating={event.rating} onClick={event.handleClick} />
         )}
       </div>
     </EventWrapper>

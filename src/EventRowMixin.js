@@ -78,7 +78,7 @@ export default {
       >
         {
           //month view
-          event && <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} size="sm" rating={40} onClick={() => {}} />
+          event && <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} size="sm" rating={event.rating} onClick={event.handleClick} />
         }
         {/* {content} */}
       </div>
