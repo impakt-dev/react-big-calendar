@@ -134,6 +134,7 @@ function Agenda({
     },
     dayNumber: {
       marginRight: 4,
+      width: 100,
       fontSize: 24,
       fontFamily: 'Circular Std Bold',
     },
@@ -215,11 +216,11 @@ function Agenda({
 
                     <div style={styles.container}>
                       {<div style={styles.dateContainer}>
-                        {id === 0 && (<><div style={styles.dayNumber}>
-                          {moment(key).format('DD')}
+                        {(<><div style={styles.dayNumber}>
+                          {id === 0 && moment(key).format('DD')}
                         </div>
                           <div style={styles.dayName}>
-                            {moment(key).format('ddd')}
+                          {id === 0 && moment(key).format('ddd')}
                           </div></>)}
                       </div>}
                       <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} size="lg" rating={event.rating} onClick={event.handleClick} />
