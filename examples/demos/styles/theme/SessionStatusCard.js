@@ -3,7 +3,8 @@ import textStyles from './textStyles';
 const SessionStatusCard = {
   parts: ['name', 'time', 'action', 'line'],
   baseStyle: {
-    // height: '100px',
+    height: '100%',
+    width: '100%',
     borderRadius: '.25rem',
     name: {
       ...textStyles.buttonM,
