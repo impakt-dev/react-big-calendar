@@ -74,7 +74,6 @@ export default {
         // IE10/11 need max-width. flex-basis doesn't respect box-sizing
         style={{ WebkitFlexBasis: per, flexBasis: per, maxWidth: per }}
       >
-        {/* //month view */}
         {content}
       </div>
     )
