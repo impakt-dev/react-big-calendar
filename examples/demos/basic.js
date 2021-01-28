@@ -17,7 +17,8 @@ const Basic = ({  }) => (
       timeslots={2}
       showMultiDayTimes
       localizer={localizer}
-      defaultView='week'
+      defaultView='month'
+      popup
       components={{
         dayComponent: () =>  <Box w='full'><SessionStatusCard sessionName={'title'} variant={'variant'} sessionTime={'time'} size={'size'}/></Box>,
         monthEventComponent: () => null,
