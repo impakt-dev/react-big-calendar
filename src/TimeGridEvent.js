@@ -21,28 +21,20 @@ function TimeGridEvent(props) {
     onClick,
     onDoubleClick,
     onKeyPress,
-    components: { event: Event, eventWrapper: EventWrapper, liveButton, sessionCard },
+    components: { eventWrapper: EventWrapper, sessionCard },
   } = props
-  const title = accessors.title(event)
+  const SessionCard = sessionCard
   const tooltip = accessors.tooltip(event)
   const end = accessors.end(event)
   const start = accessors.start(event)
-  const splittedLabel = label && label.split(' – ')
-  const splittedStartLabel = splittedLabel && splittedLabel[0] && splittedLabel[0].split(' ')
-  const splittedEndLabel = splittedLabel && splittedLabel[1] && splittedLabel[1].split(' ')
-  const startLabel = `${splittedStartLabel && splittedStartLabel[0] && splittedStartLabel[0].toLowerCase()}${splittedStartLabel&&splittedStartLabel[1]&&splittedStartLabel[1].toLowerCase()}`
-  const endLabel = `${splittedEndLabel && splittedEndLabel[0] && splittedEndLabel[0].toLowerCase()}${splittedEndLabel && splittedEndLabel[1] && splittedEndLabel[1].toLowerCase()}`
-  const processedLabel = `${startLabel} - ${endLabel}`;
  
   const userProps = getters.eventProp(event, start, end, selected)
 
   const { height, top, width, xOffset } = style
+  // week view
   const inner = [
-    <div key="2" className="rbc-event-content">
-      {Event ? <Event event={event} title={title} /> : title}
-    </div>,
-    <div key="1" className="rbc-event-label">
-      {processedLabel}
+    <div key="2" className="rbc-event-content" style={{ maxHeight: 'inherit', margin: 0 }}>
+      <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} size="md" rating={event.rating} onClick={event.handleClick} />
     </div>,
   ]
 
@@ -89,7 +81,7 @@ const EventItem = ({ event, sessionCard: SessionCard }) => {
   // day view
   return (
     <div style={styles.container, {height: '100%'}}>
-      <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} size="sm" rating={event.rating} onClick={event.handleClick} />
+      <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} size="md" rating={event.rating} onClick={event.handleClick} />
     </div>
   )
 }
