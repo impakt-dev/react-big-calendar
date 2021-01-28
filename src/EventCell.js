@@ -56,6 +56,7 @@ class EventCell extends React.Component {
             : end < moment()
             ? '#909090'
             : 'white',
+            overflow: 'inherit'
         }}
         title={tooltip || undefined}
       >
