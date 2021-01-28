@@ -15,25 +15,20 @@ class EventCell extends React.Component {
       onSelect,
       onDoubleClick,
       onKeyPress,
-      localizer,
       continuesPrior,
       continuesAfter,
       accessors,
       getters,
       children,
-      components: { event: Event, eventWrapper: EventWrapper },
-      slotStart,
-      slotEnd,
+      components: { eventWrapper: EventWrapper, sessionCard: SessionCard },
       ...props
     } = this.props
     delete props.resizable
 
-    let title = accessors.title(event)
     let tooltip = accessors.tooltip(event)
     let end = accessors.end(event)
     let start = accessors.start(event)
     let allDay = accessors.allDay(event)
-    const hour = moment(start).format('HH:mm A')
 
     let showAsAllDay =
       isAllDay || allDay || dates.diff(start, dates.ceil(end, 'day'), 'day') > 1
@@ -59,20 +54,7 @@ class EventCell extends React.Component {
         }}
         title={tooltip || undefined}
       >
-        {Event ? (
-          <Event
-            event={event}
-            continuesPrior={continuesPrior}
-            continuesAfter={continuesAfter}
-            title={title}
-            isAllDay={allDay}
-            localizer={localizer}
-            slotStart={slotStart}
-            slotEnd={slotEnd}
-          />
-        ) : (
-          `${hour} ${title}`
-        )}
+        <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} size="sm" rating={event.rating} onClick={event.handleClick} />
       </div>
     )
 
@@ -81,7 +63,7 @@ class EventCell extends React.Component {
         <div
           {...props}
           tabIndex={0}
-          style={{ ...userProps.style, ...style }}
+          style={{ ...userProps.style, ...style, padding: 0 }}
           className={clsx('rbc-event', className, userProps.className, {
             'rbc-selected': selected,
             'rbc-event-allday': showAsAllDay,
