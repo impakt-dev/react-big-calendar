@@ -160,7 +160,7 @@ export default [
     id: 145,
     title: 'Yoga Course 101 - Clean Your Mind from night to morning x',
     start: new Date(new Date().setHours(new Date().getHours() + 7)),
-    end: new Date(new Date().setHours(new Date().getHours() + 8)),
+    end: new Date(new Date().setHours(new Date().getHours() + 10)),
     variant: 'completed',
     rating: 40,
     handleClick: () => {}
