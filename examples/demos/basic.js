@@ -22,7 +22,7 @@ const Basic = ({  }) => (
         dayComponent: () =>  <Box w='full'><SessionStatusCard sessionName={'title'} variant={'variant'} sessionTime={'time'} size={'size'}/></Box>,
         monthEventComponent: () => null,
         test: () => {},
-        sessionCard: ({ title, startTime, endTime, variant, size, rating, onClick }) => <Box w="full"><SessionStatusCard sessionName={title} variant={variant} startTime={startTime} endTime={endTime} size={size} rating={rating} onClick={onClick} /></Box>
+        sessionCard: ({ title, startTime, endTime, variant, size, rating, onClick }) => <Box w="full" h="full"><SessionStatusCard sessionName={title} variant={variant} startTime={startTime} endTime={endTime} size={size} rating={rating} onClick={onClick} /></Box>
       }}
     />
   </ChakraProvider>
