@@ -60,7 +60,7 @@ class EventCell extends React.Component {
         title={tooltip || undefined}
       >
         {/* // month view */}
-        <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} size="md" rating={event.rating} onClick={event.handleClick} />
+        <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} size="sm" rating={event.rating} onClick={event.handleClick} />
         {/* {Event ? (
           <Event
             event={event}	
