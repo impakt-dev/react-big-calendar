@@ -15,20 +15,25 @@ class EventCell extends React.Component {
       onSelect,
       onDoubleClick,
       onKeyPress,
+      localizer,
       continuesPrior,
       continuesAfter,
       accessors,
       getters,
       children,
-      components: { eventWrapper: EventWrapper, sessionCard: SessionCard },
+      components: { event: Event, eventWrapper: EventWrapper, sessionCard: SessionCard },
+      slotStart,	
+      slotEnd,
       ...props
     } = this.props
     delete props.resizable
 
+    let title = accessors.title(event)
     let tooltip = accessors.tooltip(event)
     let end = accessors.end(event)
     let start = accessors.start(event)
     let allDay = accessors.allDay(event)
+    const hour = moment(start).format('HH:mm A')
 
     let showAsAllDay =
       isAllDay || allDay || dates.diff(start, dates.ceil(end, 'day'), 'day') > 1
@@ -56,6 +61,20 @@ class EventCell extends React.Component {
       >
         {/* // month view */}
         <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} size="md" rating={event.rating} onClick={event.handleClick} />
+        {/* {Event ? (
+          <Event
+            event={event}	
+            continuesPrior={continuesPrior}	
+            continuesAfter={continuesAfter}	
+            title={title}	
+            isAllDay={allDay}	
+            localizer={localizer}	
+            slotStart={slotStart}	
+            slotEnd={slotEnd}	
+          />	
+        ) : (	
+          `${hour} ${title}`	
+        )} */}
       </div>
     )
 
