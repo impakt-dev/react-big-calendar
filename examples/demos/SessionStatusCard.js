@@ -72,36 +72,42 @@ const BTNCOLORS = {
   upcoming: 'primary.marine.500'
 }
 
-const Actions = ({ variant, btnColor, rating, onClick }) => {
-  switch (variant) {
-    case 'next':
-      return (<SessionAction>
-        <Button bgColor={btnColor} color="white" size="sm" onClick={onClick}>
-        Join Now
-      </Button>
-      </SessionAction>)
-    case 'addSession':
-      return (<SessionAction>
-        <DeleteSVG onClick={onClick} />
-      </SessionAction>)
-    case 'upcoming':
-      return (<SessionAction>
+const Actions = ({ size, variant, btnColor, rating, isLive, isAvailable, onClick }) => {
+  if (isLive && variant === 'next') {
+    if (size !== 'lg') return null
+    return (<SessionAction>
+    <Button bgColor={btnColor} color="white" size="sm" onClick={onClick}>
+    Join Now
+  </Button>
+  </SessionAction>)
+  }
+  if (isAvailable && variant === 'upcoming') {
+    if (size !== 'lg') return null
+    return (
+      <SessionAction>
         <Button bgColor={btnColor} color="white" size="sm" onClick={onClick}>
         Book Now
-      </Button>
-      </SessionAction>)
-    case 'completed':
-      return <SessionRating rate={rating} />
-    default:
-      return null
+        </Button>
+      </SessionAction>
+    )
   }
+  if (rating && variant === 'completed') {
+    if (size !== 'lg') return null
+    return <SessionRating rate={rating} />
+  }
+  if (variant === 'addSession') {
+    return (<SessionAction>
+    <DeleteSVG onClick={onClick} />
+  </SessionAction>)
+  }
+  
+  return null
 }
 
-const SessionStatusCard = ({ sessionName, startTime, endTime, variant, size, rating, onClick }) => {
+const SessionStatusCard = ({ sessionName, startTime, endTime, variant, isLive, isAvailable, size, rating, onClick }) => {
   const styles = useMultiStyleConfig('SessionStatusCard', { variant, size });
   const sessionTime = `${dayjs(startTime).format('hh:mm A')} - ${dayjs(endTime).format('hh:mm A')}`
-  const canJoin = canJoinSession(variant, startTime, endTime)
-  // console.log(sessionName, startTime, endTime, variant, size, rating)
+
   return (
     <StylesProvider value={styles}>
       <Flex sx={styles} align="center" justify="space-between" position="relative">
@@ -110,7 +116,7 @@ const SessionStatusCard = ({ sessionName, startTime, endTime, variant, size, rat
           <Box sx={styles.name}>{sessionName}</Box>
           {size !== 'sm' && <Box sx={styles.time}>{sessionTime}</Box>}
         </Box>
-        {(size === 'lg' && canJoin) && <Actions variant={variant} btnColor={BTNCOLORS[variant]} rating={rating} onClick={onClick} />}
+        <Actions size={size} btnColor={BTNCOLORS[variant]} rating={rating} isLive={isLive} isAvailable={isAvailable} variant={variant} onClick={onClick} />
       </Flex>
     </StylesProvider>
   );
