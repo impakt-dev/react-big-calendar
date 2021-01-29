@@ -227,7 +227,7 @@ function Agenda({
                           {id === 0 && moment(key).format('ddd')}
                           </div></>)}
                       </div>}
-                      <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} size="lg" rating={event.rating} onClick={event.handleClick} />
+                      <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} isLive={event.isLive} isAvailable={event.isAvailable} isLive={event.isLive} isAvailable={event.isAvailable} size="lg" rating={event.rating} onClick={event.handleClick} />
                     </div>
                   </div>
                 )
