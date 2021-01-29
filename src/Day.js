@@ -29,12 +29,13 @@ class Day extends React.Component {
               style={{
                 align: 'center',
                 fontSize: 14,
-                fontFamily: 'Circular Std Medium',
+                fontFamily: 'Poppins',
+                fontWeight: 500
               }}
             >
               {dayName}
             </div>
-            <div style={{ fontSize: 24, fontFamily: 'Circular Std Bold' }}>
+            <div style={{ fontSize: 24, fontFamily: 'Poppins', fontWeight: 700 }}>
               {dayNumber}
             </div>
           </div>

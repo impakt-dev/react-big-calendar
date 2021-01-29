@@ -10,7 +10,6 @@
   }
 }
 
-
 .rbc-timeslot-group {
   //time gutter
   border-bottom: 0px solid $cell-border;
@@ -62,7 +61,8 @@
     padding-right: 5px;
     width: auto;
     font-size: 14px;
-    font-family: Circular Std Medium;
+    font-family: Poppins;
+    font-weight: medium;
   }
 
   .rbc-event-content {
@@ -76,19 +76,20 @@
     min-height: 1em;
     margin-bottom: 4px;
     font-size: 16px;
-    font-family: Circular Std Medium;
+    font-family: Poppins;
+    font-weight: medium;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   .rbc-time-slot {
-    border-top: 1px solid #EBEBEB;
+    border-top: 1px solid #ebebeb;
     // border-right: 1px solid #EBEBEB;
     min-height: 30px;
   }
   .rbc-time-slot-last-column {
-    border-right: 1px solid #EBEBEB;
+    border-right: 1px solid #ebebeb;
     // border-right: 1px solid #EBEBEB;
     min-height: 30px;
   }
@@ -124,10 +125,10 @@
   }
 
   .rbc-header,
-  .rbc-day-bg, {
+  .rbc-day-bg {
     width: 140px;
     // min-width: 0;
-    flex:  1 1 0;
+    flex: 1 1 0;
     flex-basis: 0 px;
   }
 }

@@ -105,7 +105,8 @@ const styles = {
     paddingRight: 32,
     paddingLeft: 32,
     fontSize: 18,
-    fontFamily: 'Circular Std Bold',
+    fontFamily: 'Poppins',
+    fontWeight: 700,
   },
   selectedGoLive: {
     display: 'flex',
@@ -119,6 +120,7 @@ const styles = {
     paddingRight: 32,
     paddingLeft: 32,
     fontSize: 18,
-    fontFamily: 'Circular Std Bold',
+    fontFamily: 'Poppins',
+    fontWeight: 700,
   },
 }

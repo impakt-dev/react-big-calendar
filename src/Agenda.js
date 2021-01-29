@@ -136,12 +136,14 @@ function Agenda({
       marginRight: 4,
       width: 100,
       fontSize: 24,
-      fontFamily: 'Circular Std Bold',
+      fontFamily: 'Poppins',
+      fontWeight: 700
     },
     dayName: {
       fontSize: 14,
       paddingBottom: 4,
-      fontFamily: 'Circular Std Medium',
+      fontFamily: 'Poppins',
+      fontWeight: 500
     },
     eventContainer: {
       background: '#EBEBEB',
@@ -154,11 +156,13 @@ function Agenda({
       // flexDirection: 'column'
     },
     eventTitle: {
-      fontFamily: 'Circular Std Bold',
+      fontFamily: 'Poppins',
+      fontWeight: 700,
       fontSize: 16,
     },
     eventDate: {
-      fontFamily: 'Circular Std Medium',
+      fontFamily: 'Poppins',
+      fontWeight: 500,
       fontSize: 14,
     },
   }
