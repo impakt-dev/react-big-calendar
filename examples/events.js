@@ -8,6 +8,7 @@ export default [
     start: new Date(2015, 3, 0),
     end: new Date(2015, 3, 1),
     variant: 'upcoming',
+    isAvailable: true,
     handleClick: () => {},
   },
   {
@@ -26,6 +27,7 @@ export default [
     start: new Date(2016, 2, 13, 0, 0, 0),
     end: new Date(2016, 2, 20, 0, 0, 0),
     variant: 'next',
+    isLive: true,
     handleClick: () => {},
   },
 
@@ -44,6 +46,7 @@ export default [
     start: new Date(2015, 3, 9, 0, 0, 0),
     end: new Date(2015, 3, 10, 0, 0, 0),
     variant: 'upcoming',
+    isAvailable: true,
     handleClick: () => {},
   },
   {
@@ -53,6 +56,7 @@ export default [
     end: new Date(2015, 3, 13),
     desc: 'Big conference for important people',
     variant: 'next',
+    isLive: true,
     handleClick: () => {},
   },
   {
@@ -79,6 +83,7 @@ export default [
     start: new Date(2015, 3, 12, 14, 0, 0, 0),
     end: new Date(2015, 3, 12, 15, 0, 0, 0),
     variant: 'upcoming',
+    isAvailable: true,
     handleClick: () => {},
   },
   {
@@ -88,6 +93,7 @@ export default [
     end: new Date(2015, 3, 12, 17, 30, 0, 0),
     desc: 'Most important meal of the day',
     variant: 'next',
+    isLive: true,
     handleClick: () => {},
   },
   {
@@ -121,6 +127,7 @@ export default [
     start: new Date(2015, 3, 17, 19, 30, 0),
     end: new Date(2015, 3, 17, 23, 30, 0),
     variant: 'upcoming',
+    isAvailable: true,
     handleClick: () => {},
   },
   {
@@ -129,6 +136,7 @@ export default [
     start: new Date(2015, 3, 20, 19, 30, 0),
     end: new Date(2015, 3, 22, 2, 0, 0),
     variant: 'next',
+    isLive: true,
     handleClick: () => {},
   },
   {
@@ -146,6 +154,7 @@ export default [
     start: new Date(new Date().setHours(new Date().getHours() + 0.5 )),
     end: new Date(new Date().setMinutes(new Date().getMinutes() + 2)),
     variant: 'next',
+    isLive: true,
     handleClick: () => {},
   },
   {
@@ -154,6 +163,7 @@ export default [
     start: new Date(new Date().setHours(new Date().getHours() + 3 )),
     end: new Date(new Date().setMinutes(new Date().getMinutes() + 4)),
     variant: 'next',
+    isLive: true,
     handleClick: () => {},
   },
   {
@@ -162,6 +172,7 @@ export default [
     start: new Date(new Date().setHours(new Date().getHours() + 4 )),
     end: new Date(new Date().setMinutes(new Date().getMinutes() + 5)),
     variant: 'next',
+    isLive: true,
     handleClick: () => {},
   },
   {
@@ -170,6 +181,7 @@ export default [
     start: new Date("Thu Jan 28 2021 10:00:00 GMT+0100 (GMT+01:00)"),
     end: new Date("Thu Jan 28 2021 12:30:00 GMT+0100 (GMT+01:00)"),
     variant: 'next',
+    isLive: true,
     handleClick: () => {},
   },
   {
@@ -187,6 +199,7 @@ export default [
   //   start: new Date(new Date().setHours(new Date().getHours() + 2)),
   //   end: new Date(new Date().setHours(new Date().getHours() + 3)),
   //   variant: 'next',
+  // isLive: true,
   //   handleClick: () => {},
   // },
   { 
@@ -212,6 +225,7 @@ export default [
     start: new Date(2015, 3, 14, 15, 30, 0),
     end: new Date(2015, 3, 14, 19, 0, 0),
     variant: 'upcoming',
+    isAvailable: true,
     handleClick: () => {},
   },
   {
@@ -245,6 +259,7 @@ export default [
     start: new Date(2015, 3, 14, 17, 0, 0),
     end: new Date(2015, 3, 14, 18, 30, 0),
     variant: 'upcoming',
+    isAvailable: true,
     handleClick: () => {},
   },
   {
@@ -253,6 +268,7 @@ export default [
     start: new Date(2015, 3, 14, 17, 0, 0),
     end: new Date(2015, 3, 14, 18, 30, 0),
     variant: 'next',
+    isLive: true,
     handleClick: () => {},
   },
   {
@@ -269,6 +285,7 @@ export default [
     start: new Date(2015, 3, 14, 18, 30, 0),
     end: new Date(2015, 3, 14, 20, 0, 0),
     variant: 'next',
+    isLive: true,
     handleClick: () => {},
   },
 ]
