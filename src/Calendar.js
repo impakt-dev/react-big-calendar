@@ -902,6 +902,7 @@ class Calendar extends React.Component {
       localizer,
       viewNames,
     } = this.state.context
+    const Wrapper = components.wrapper
 
     let CalToolbar = components.toolbar || Toolbar
     const label = View.title(current, { localizer, length })
@@ -923,26 +924,28 @@ class Calendar extends React.Component {
             localizer={localizer}
           />
         )}
-        <View
-          {...props}
-          events={events}
-          date={current}
-          getNow={getNow}
-          length={length}
-          localizer={localizer}
-          getters={getters}
-          components={components}
-          accessors={accessors}
-          showMultiDayTimes={showMultiDayTimes}
-          getDrilldownView={this.getDrilldownView}
-          onNavigate={this.handleNavigate}
-          onDrillDown={this.handleDrillDown}
-          onSelectEvent={this.handleSelectEvent}
-          onDoubleClickEvent={this.handleDoubleClickEvent}
-          onKeyPressEvent={this.handleKeyPressEvent}
-          onSelectSlot={this.handleSelectSlot}
-          onShowMore={onShowMore}
-        />
+        <Wrapper>
+          <View
+            {...props}
+            events={events}
+            date={current}
+            getNow={getNow}
+            length={length}
+            localizer={localizer}
+            getters={getters}
+            components={components}
+            accessors={accessors}
+            showMultiDayTimes={showMultiDayTimes}
+            getDrilldownView={this.getDrilldownView}
+            onNavigate={this.handleNavigate}
+            onDrillDown={this.handleDrillDown}
+            onSelectEvent={this.handleSelectEvent}
+            onDoubleClickEvent={this.handleDoubleClickEvent}
+            onKeyPressEvent={this.handleKeyPressEvent}
+            onSelectSlot={this.handleSelectSlot}
+            onShowMore={onShowMore}
+          />
+        </Wrapper>
       </div>
     )
   }
