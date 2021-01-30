@@ -24,7 +24,6 @@ import defaults from 'lodash/defaults'
 import transform from 'lodash/transform'
 import mapValues from 'lodash/mapValues'
 import { wrapAccessor } from './utils/accessors'
-import { Box } from '@chakra-ui/react'
 
 function viewNames(_views) {
   return !Array.isArray(_views) ? Object.keys(_views) : _views
@@ -880,7 +879,6 @@ class Calendar extends React.Component {
       events,
       style,
       className,
-      bodyStyle,
       elementProps,
       date: current,
       getNow,
@@ -925,29 +923,26 @@ class Calendar extends React.Component {
             localizer={localizer}
           />
         )}
-        <Box style={bodyStyle} height="100%" width="100%">
-          <View
-            {...props}
-            events={events}
-            date={current}
-            getNow={getNow}
-            length={length}
-            localizer={localizer}
-            getters={getters}
-            components={components}
-            accessors={accessors}
-            showMultiDayTimes={showMultiDayTimes}
-            getDrilldownView={this.getDrilldownView}
-            onNavigate={this.handleNavigate}
-            onDrillDown={this.handleDrillDown}
-            onSelectEvent={this.handleSelectEvent}
-            onDoubleClickEvent={this.handleDoubleClickEvent}
-            onKeyPressEvent={this.handleKeyPressEvent}
-            onSelectSlot={this.handleSelectSlot}
-            onShowMore={onShowMore}
-          />
-        </Box>
-          
+        <View
+          {...props}
+          events={events}
+          date={current}
+          getNow={getNow}
+          length={length}
+          localizer={localizer}
+          getters={getters}
+          components={components}
+          accessors={accessors}
+          showMultiDayTimes={showMultiDayTimes}
+          getDrilldownView={this.getDrilldownView}
+          onNavigate={this.handleNavigate}
+          onDrillDown={this.handleDrillDown}
+          onSelectEvent={this.handleSelectEvent}
+          onDoubleClickEvent={this.handleDoubleClickEvent}
+          onKeyPressEvent={this.handleKeyPressEvent}
+          onSelectSlot={this.handleSelectSlot}
+          onShowMore={onShowMore}
+        />
       </div>
     )
   }
