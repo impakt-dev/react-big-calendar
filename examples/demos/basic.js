@@ -20,8 +20,6 @@ const Basic = ({  }) => (
       defaultView='month'
       popup
       components={{
-        // to wrap calendar body and set the background color
-        wrapper: ({ children }) => <Box bgColor="#fff" w="full" h="full">{children}</Box>,
         sessionCard: ({ title, startTime, endTime, variant, size, rating, isLive, isAvailable, onClick }) => <Box w="full" h="full"><SessionStatusCard sessionName={title} variant={variant} startTime={startTime} endTime={endTime} size={size} rating={rating} isLive={isLive} isAvailable={isAvailable} onClick={onClick} /></Box>
       }}
     />

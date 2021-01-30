@@ -902,7 +902,6 @@ class Calendar extends React.Component {
       localizer,
       viewNames,
     } = this.state.context
-    const Wrapper = components.wrapper
 
     let CalToolbar = components.toolbar || Toolbar
     const label = View.title(current, { localizer, length })
@@ -924,7 +923,6 @@ class Calendar extends React.Component {
             localizer={localizer}
           />
         )}
-        <Wrapper>
           <View
             {...props}
             events={events}
@@ -945,7 +943,6 @@ class Calendar extends React.Component {
             onSelectSlot={this.handleSelectSlot}
             onShowMore={onShowMore}
           />
-        </Wrapper>
       </div>
     )
   }
