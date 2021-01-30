@@ -193,15 +193,15 @@ export default [
     rating: 40,
     handleClick: () => {}
   },
-  // {
-  //   id: 147,
-  //   title: 'Yoga Course 101 - Clean Your Mind from night to morning',
-  //   start: new Date(new Date().setHours(new Date().getHours() + 2)),
-  //   end: new Date(new Date().setHours(new Date().getHours() + 3)),
-  //   variant: 'next',
-  // isLive: true,
-  //   handleClick: () => {},
-  // },
+  {
+    id: 147,
+    title: 'Yoga Course 101 - Clean Your Mind from night to morning',
+    start: new Date(new Date().setHours(new Date().getHours() + 2)),
+    end: new Date(new Date().setHours(new Date().getHours() + 3)),
+    variant: 'next',
+  isLive: true,
+    handleClick: () => {},
+  },
   { 
     id: 146,
     title: 'Yoga Course 101 - Clean Your Mind from night to morning x',
