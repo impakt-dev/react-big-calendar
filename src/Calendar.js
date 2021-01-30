@@ -24,6 +24,7 @@ import defaults from 'lodash/defaults'
 import transform from 'lodash/transform'
 import mapValues from 'lodash/mapValues'
 import { wrapAccessor } from './utils/accessors'
+import { Box } from '@chakra-ui/react'
 
 function viewNames(_views) {
   return !Array.isArray(_views) ? Object.keys(_views) : _views
@@ -879,6 +880,7 @@ class Calendar extends React.Component {
       events,
       style,
       className,
+      bodyStyle,
       elementProps,
       date: current,
       getNow,
@@ -923,6 +925,7 @@ class Calendar extends React.Component {
             localizer={localizer}
           />
         )}
+        <Box style={bodyStyle} height="100%" width="100%">
           <View
             {...props}
             events={events}
@@ -943,6 +946,8 @@ class Calendar extends React.Component {
             onSelectSlot={this.handleSelectSlot}
             onShowMore={onShowMore}
           />
+        </Box>
+          
       </div>
     )
   }
