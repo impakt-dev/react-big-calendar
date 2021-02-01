@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import dayjs from 'dayjs'
 import React from 'react'
 
 function stringifyPercent(v) {
@@ -31,10 +32,11 @@ function TimeGridEvent(props) {
   const userProps = getters.eventProp(event, start, end, selected)
 
   const { height, top, width, xOffset } = style
+  const size = Math.abs(dayjs(event.startTime).diff(event.endTime)) <= 30 ? 'sm' : 'md'
   // week view
   const inner = [
     <div key="2" className="rbc-event-content" style={{ maxHeight: 'inherit', margin: 0 }}>
-      <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} isLive={event.isLive} isAvailable={event.isAvailable} size="md" rating={event.rating} onClick={event.handleClick} />
+      <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} isLive={event.isLive} isAvailable={event.isAvailable} size={size} rating={event.rating} onClick={event.handleClick} />
     </div>,
   ]
 
