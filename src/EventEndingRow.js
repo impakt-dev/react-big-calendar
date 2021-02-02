@@ -82,6 +82,7 @@ class EventEndingRow extends React.Component {
         key={'sm_' + slot}
         href="#"
         className={'rbc-show-more'}
+        style={{ letterSpacing: '0.25px', color: '#4376A8', lineHeight: '14px' }}
         onClick={e => this.showMore(slot, e)}
       >
         {localizer.messages.showMore(count)}
