@@ -29,7 +29,8 @@ const SessionStatusCard = {
   },
   sizes: {
     sm: {
-      p: "5px",
+      px: "6px",
+      py: '8px',
       name: {
         ...textStyles.bodyS,
         textOverflow: 'ellipsis',
