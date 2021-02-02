@@ -194,7 +194,7 @@ function Agenda({
                     .toLowerCase()}`;
 
                 return (
-                  <div key={event.id}>
+                  <div key={event.id} style={{ marginBottom: '.5rem' }}>
                     { isShowTimeIndicator && id === 0 && <div
                       className='rbc-current-time-indicator'
                       style={{
