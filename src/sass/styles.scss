@@ -37,10 +37,14 @@
 }
 
 .rbc-off-range {
-  color: $out-of-range-color;
+  // set day number color for cells out of month range
+  a {
+    color: $out-of-range-color !important;
+  }
 }
 
 .rbc-off-range-bg {
+  // class for cells out of month range
   background: $out-of-range-bg-color;
 }
 
