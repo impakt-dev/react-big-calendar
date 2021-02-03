@@ -21,10 +21,10 @@ const SessionStatusCard = {
     line: {
       position: 'absolute',
       left: '0%',
-      right: '99.8%',
       top: '0%',
       bottom: '0%',
       borderRadius: '1rem 0rem 0rem 1rem',
+      width: '2px'
     },
   },
   sizes: {
