@@ -42,24 +42,28 @@ class TimeGridHeader extends React.Component {
         moment(date)
           .format('DD MM YY')
           .toString()
+      const isPassedDay = moment(date).isBefore(moment())
 
       const activeDayNumberStyle = isActiveDate
         ? {
-            height: 30,
-            width: 30,
-            backgroundColor: 'black',
+            height: 40,
+            width: 40,
+            backgroundColor: '#1CA2B5',
             color: 'white',
-            borderRadius: 15,
+            borderRadius: '50%',
             justifyContent: 'center',
             alignItems: 'center',
             align: 'center',
             display: 'flex',
             fontWeight: 'bold',
-            fontSize: 18,
+            fontSize: 23,
+            lineHeight: '32px'
           }
         : {
             fontWeight: 'bold',
-            fontSize: 18,
+            fontSize: 23,
+            lineHeight: '32px',
+            color: isPassedDay ? '#B0C3D6' : '#00264C'
           }
 
       const header = (
@@ -72,7 +76,7 @@ class TimeGridHeader extends React.Component {
             alignItems: 'center',
           }}
         >
-          <div style={{ fontWeight: 'lighter' }}>{dayName}</div>
+          <div style={{ fontWeight: 'lighter', fontSize: 13 }}>{dayName}</div>
           <div style={activeDayNumberStyle}>{dayNumber}</div>
         </div>
       )
