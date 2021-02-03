@@ -38,10 +38,10 @@ export default class TimeGutter extends Component {
           style={{ width: 75 }}
         >
           <span
-            style={{ position: 'absolute', left: 0, zIndex: 9990, top: -10, display: 'flex' }}
+            style={{ position: 'absolute', left: '35%', zIndex: 9990, top: -10, display: 'flex' }}
             className=""
           >
-            <span style={{ width: 40 }}>{localizer.format(value, 'timeGutterFormat').split(' ')[0]}</span>
+            <span style={{ width: 15 }}>{localizer.format(value, 'timeGutterFormat').split(' ')[0].split((':'))[0]}</span>
             {' '}
             <span>{localizer.format(value, 'timeGutterFormat').split(' ')[1]}</span>
           </span>
@@ -62,7 +62,6 @@ export default class TimeGutter extends Component {
               width: 20,
               borderTop: 2,
               height: 1,
-              background: '#ebebeb',
             }}
           />
         </div>
