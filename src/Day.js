@@ -14,11 +14,11 @@ class Day extends React.Component {
 
     return (
       <>
-        <div>
+        <div style={{ backgroundColor: '#fff' }}>
           <div
             style={{
               marginLeft: 70,
-              width: 34,
+              width: 146,
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
@@ -28,14 +28,16 @@ class Day extends React.Component {
             <div
               style={{
                 align: 'center',
-                fontSize: 14,
+                fontSize: 13,
                 fontFamily: 'Poppins',
-                fontWeight: 500
+                fontWeight: 400,
+                color: '#728BA3',
+                lineHeight: '20px'
               }}
             >
               {dayName}
             </div>
-            <div style={{ fontSize: 24, fontFamily: 'Poppins', fontWeight: 700 }}>
+            <div style={{ fontSize: 24, color: '#fff', fontFamily: 'Poppins', fontWeight: 400, width: 32, height: 32, backgroundColor: '#1CA2B5', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               {dayNumber}
             </div>
           </div>
