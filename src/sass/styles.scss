@@ -68,16 +68,16 @@
   font-family: Poppins;
   font-style: normal;
   font-weight: bold;
-  font-size: 14px;
   line-height: 24px;
   /* identical to box height, or 171% */
 
   text-align: center;
   letter-spacing: 0.25px;
 
-  /* Wireframe / Grey / 500 */
+  font-size: 17px;
+  /* identical to box height, or 141% */
 
-  color: #909090;
+  color: #728ba3;
 
   .rbc-rtl & + & {
     border-left-width: 0;

@@ -74,9 +74,9 @@
   text-align: left;
   font-family: Poppins;
   font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 18px;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
   /* identical to box height */
 
   display: flex;
@@ -84,7 +84,7 @@
 
   /* Wireframe / Grey / 900 */
 
-  color: #262626;
+  color: #00264c;
   &.rbc-now {
     font-weight: bold;
   }
