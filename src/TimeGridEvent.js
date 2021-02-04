@@ -83,7 +83,7 @@ const EventItem = ({ event, sessionCard: SessionCard }) => {
   // day view
   return (
     <div style={styles.container, {height: '100%'}}>
-      <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} isLive={event.isLive} isAvailable={event.isAvailable} size="md" rating={event.rating} onClick={event.handleClick} />
+      <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} isLive={event.isLive} isAvailable={event.isAvailable} size="lg" rating={event.rating} onClick={event.handleClick} />
     </div>
   )
 }

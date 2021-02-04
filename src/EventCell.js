@@ -91,7 +91,6 @@ class EventCell extends React.Component {
             'rbc-event-continues-prior': continuesPrior,
             'rbc-event-continues-after': continuesAfter,
           })}
-          style={{ backgroundColor, color: 'black' }}
           onClick={e => onSelect && onSelect(event, e)}
           onDoubleClick={e => onDoubleClick && onDoubleClick(event, e)}
           onKeyPress={e => onKeyPress && onKeyPress(event, e)}

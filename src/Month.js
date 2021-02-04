@@ -155,7 +155,8 @@ class MonthView extends React.Component {
     let label = localizer.format(date, 'dateFormat')
     let DateHeaderComponent = this.props.components.dateHeader || DateHeader
 
-    const top = Number(moment(currentDate).format('H')) * (567 / 24)
+    // indicator position in month view
+    const top = Number(moment(currentDate).format('H')) * (543 / 24)
 
     return (
       <div
