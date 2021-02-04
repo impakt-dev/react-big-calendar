@@ -153,6 +153,9 @@ class MonthView extends React.Component {
     let label = localizer.format(date, 'dateFormat')
     let DateHeaderComponent = this.props.components.dateHeader || DateHeader
 
+    const top = Number(moment(currentDate).format('H')) * (567 / 24)
+    console.log(moment(currentDate).format('H'))
+
     return (
       <div
         {...props}
@@ -161,7 +164,30 @@ class MonthView extends React.Component {
           isOffRange && 'rbc-off-range',
           isCurrent && 'rbc-current'
         )}
+        style={{ position: 'relative' }}
       >
+        {
+          isCurrent && (
+            <div
+              className="rbc-current-time-indicator"
+              style={{
+                top: `${top}%`,
+              }}
+            >
+              <div
+                style={{
+                  height: 12,
+                  width: 12,
+                  borderRadius: 6,
+                  backgroundColor: '#c41f30',
+                  position: 'absolute',
+                  top: -5,
+                  left: -7,
+                }}
+              />
+            </div>
+          )
+        }
         <DateHeaderComponent
           label={label}
           date={date}
