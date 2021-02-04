@@ -18,6 +18,7 @@ import Header from './Header'
 import DateHeader from './DateHeader'
 
 import { inRange, sortEvents } from './utils/eventLevels'
+import moment from 'moment'
 
 let eventsForWeek = (evts, start, end, accessors) =>
   evts.filter(e => inRange(e, start, end, accessors))
@@ -173,20 +174,21 @@ class MonthView extends React.Component {
   }
 
   renderHeaders(row) {
-    let { localizer, components } = this.props
+    let { localizer, components, date: currentDate } = this.props
     let first = row[0]
     let last = row[row.length - 1]
     let HeaderComponent = components.header || Header
 
-    return dates.range(first, last, 'day').map((day, idx) => (
-      <div key={'header_' + idx} className="rbc-header">
-        <HeaderComponent
-          date={day}
-          localizer={localizer}
-          label={localizer.format(day, 'weekdayFormat')}
-        />
-      </div>
-    ))
+    return dates.range(first, last, 'day').map((day, idx) => {
+      return (
+        <div key={'header_' + idx} className="rbc-header" style={{ color: moment(day).isSame(currentDate, 'day') && '#00264C' }}>
+          <HeaderComponent
+            date={day}
+            localizer={localizer}
+            label={localizer.format(day, 'weekdayFormat')}
+          />
+        </div>
+    )})
   }
 
   renderOverlay() {
