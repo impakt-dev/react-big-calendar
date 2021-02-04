@@ -81,12 +81,14 @@ class MonthView extends React.Component {
     this._weekCount = weeks.length
 
     return (
+      <div style={{ padding: '1.5rem', borderRadius: '10px', backgroundColor: '#fff', height: '100%' }}>
       <div className={clsx('rbc-month-view', className)}>
         <div className="rbc-row rbc-month-header">
           {this.renderHeaders(weeks[0])}
         </div>
-        {weeks.map(this.renderWeek)}
-        {this.props.popup && this.renderOverlay()}
+          {weeks.map(this.renderWeek)}
+          {this.props.popup && this.renderOverlay()}
+      </div>
       </div>
     )
   }

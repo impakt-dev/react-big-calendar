@@ -29,7 +29,7 @@
 
 .rbc-month-view {
   position: relative;
-  border: 1px solid @calendar-border;
+  // border: 1px solid @calendar-border;
   display: flex;
   flex-direction: column;
   flex: 1 0 0;
@@ -38,11 +38,17 @@
   -webkit-user-select: none;
 
   height: 100%; // ie-fix
+
+  > div:not(:first-child) {
+    border-left: 1px solid @calendar-border;
+    border-right: 1px solid @calendar-border;
+  }
 }
 
 .rbc-month-header {
   display: flex;
   flex-direction: row;
+  border-bottom: 1px solid @calendar-border;
 }
 
 .rbc-month-row {

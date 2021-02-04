@@ -13,7 +13,7 @@ const customComponents = {
     const style = {
       display: 'flex',
       flex: 1,
-      borderLeft: '1px solid #DDD',
+      borderLeft: '1px solid #D3E2F0',
       backgroundColor: hasAlert ? '#f5f5dc' : '#fff',
     }
     return (
