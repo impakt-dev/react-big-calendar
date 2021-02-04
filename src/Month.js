@@ -156,7 +156,6 @@ class MonthView extends React.Component {
     let DateHeaderComponent = this.props.components.dateHeader || DateHeader
 
     const top = Number(moment(currentDate).format('H')) * (567 / 24)
-    console.log(moment(currentDate).format('H'))
 
     return (
       <div
