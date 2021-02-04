@@ -55,14 +55,18 @@ class Popup extends React.Component {
       minWidth: width + width / 2,
     }
 
+    const dayName = localizer.format(slotStart, 'ddd DD').split(' ')[0]
+    const dayNumber = localizer.format(slotStart, 'ddd DD').split(' ')[1]
+
     return (
       <div
         style={{ ...this.props.style, ...style }}
         className="rbc-overlay"
         ref={popperRef}
       >
-        <div className="rbc-overlay-header">
-          {localizer.format(slotStart, 'dayHeaderFormat')}
+        <div className="rbc-overlay-header" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+          <span style={{ marginBottom: '.5rem', color: '#728BA3', fontSize: '13px', lineHeight: '16px' }}>{dayName}</span>
+          <span style={{ color: '#00264C', fontSize: '23px', lineHeight: '32px' }}>{dayNumber}</span>
         </div>
         {events.map((event, idx) => (
           <EventCell
