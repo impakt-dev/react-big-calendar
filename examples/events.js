@@ -148,17 +148,17 @@ export default [
     rating: 40,
     handleClick: () => {},
   },
-  // {
-  //   id: 140,
-  //   title: 'Yoga Course 101 - Clean Your Mind from night to morninggg',
-  //   start: new Date(new Date().setHours(new Date().getHours() + 1 )),
-  //   end: new Date(new Date().setMinutes(new Date().getMinutes() + 1.5)),
-  //   variant: 'next',
-  //   isLive: true,
-  //   handleClick: () => {},
-  // },
   {
-    id: 140,
+    id: 1402,
+    title: 'Yoga Course 101 - Clean Your Mind from night to morninggg',
+    start: new Date(new Date().setHours(new Date().getHours() + 1 )),
+    end: new Date(new Date().setMinutes(new Date().getMinutes() + 1.5)),
+    variant: 'next',
+    isLive: true,
+    handleClick: () => {},
+  },
+  {
+    id: 1401,
     title: 'Yoga Course 101 - Clean Your Mind from night to morningzzz',
     start: new Date(new Date().setHours(new Date().getHours() + 3 )),
     end: new Date(new Date().setMinutes(new Date().getMinutes() + 4)),
@@ -167,7 +167,7 @@ export default [
     handleClick: () => {},
   },
   {
-    id: 140,
+    id: 1403,
     title: 'Yoga Course 101 - Clean Your Mind from night to morningxxx',
     start: new Date(new Date().setHours(new Date().getHours() + 4 )),
     end: new Date(new Date().setMinutes(new Date().getMinutes() + 5)),
@@ -185,7 +185,7 @@ export default [
     handleClick: () => {},
   },
   {
-    id: 141,
+    id: 1411,
     title: 'Yoga Course 101 - Clean Your Mind from night to morning fa',
     start: new Date("Thu Feb 05 2021 11:00:00 GMT+0100 (GMT+01:00)"),
     end: new Date("Thu Feb 05 2021 12:00:00 GMT+0100 (GMT+01:00)"),
@@ -194,7 +194,7 @@ export default [
     handleClick: () => {},
   },
   {
-    id: 141,
+    id: 1412,
     title: 'Yoga Course 101 - Clean Your Mind from night to morning fad',
     start: new Date("Thu Feb 05 2021 12:00:00 GMT+0100 (GMT+01:00)"),
     end: new Date("Thu Feb 05 2021 13:00:00 GMT+0100 (GMT+01:00)"),
@@ -203,7 +203,7 @@ export default [
     handleClick: () => {},
   },
   {
-    id: 141,
+    id: 1413,
     title: 'Yoga Course 101 - Clean Your Mind from night to morning fade',
     start: new Date("Thu Jan 31 2021 13:00:00 GMT+0100 (GMT+01:00)"),
     end: new Date("Thu Jan 31 2021 14:00:00 GMT+0100 (GMT+01:00)"),
