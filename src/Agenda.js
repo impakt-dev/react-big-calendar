@@ -211,7 +211,10 @@ function Agenda({
                           </>)}
                       </div>}
                       <div style={{ width: '100%' }}>
-                        { isShowTimeIndicator && id === 0 && <div
+                        { 
+                          // disable time indicator for agenda view 
+                        }
+                        {/* { isShowTimeIndicator && id === 0 && <div
                           className='rbc-current-time-indicator'
                           style={{
                             marginBottom: 4,
@@ -230,7 +233,7 @@ function Agenda({
                             top: -4,
                           }}
                         />
-                      </div>}
+                      </div>} */}
                       <div style={{ width: '99%', marginLeft: 'auto' }}>
                         <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} isLive={event.isLive} isAvailable={event.isAvailable} isLive={event.isLive} isAvailable={event.isAvailable} size="lg" rating={event.rating} onClick={event.handleClick} />
                       </div>

@@ -169,26 +169,27 @@ class MonthView extends React.Component {
         style={{ position: 'relative' }}
       >
         {
-          isCurrent && (
-            <div
-              className="rbc-current-time-indicator"
-              style={{
-                top: `${top}%`,
-              }}
-            >
-              <div
-                style={{
-                  height: 12,
-                  width: 12,
-                  borderRadius: 6,
-                  backgroundColor: '#c41f30',
-                  position: 'absolute',
-                  top: -5,
-                  left: -7,
-                }}
-              />
-            </div>
-          )
+          // disable indicator for month view
+          // isCurrent && (
+          //   <div
+          //     className="rbc-current-time-indicator"
+          //     style={{
+          //       top: `${top}%`,
+          //     }}
+          //   >
+          //     <div
+          //       style={{
+          //         height: 12,
+          //         width: 12,
+          //         borderRadius: 6,
+          //         backgroundColor: '#c41f30',
+          //         position: 'absolute',
+          //         top: -5,
+          //         left: -7,
+          //       }}
+          //     />
+          //   </div>
+          // )
         }
         <DateHeaderComponent
           label={label}
