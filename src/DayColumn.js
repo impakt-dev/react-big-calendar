@@ -172,7 +172,6 @@ class DayColumn extends React.Component {
             className="rbc-current-time-indicator"
             style={{
               top: `${this.state.timeIndicatorPosition}%`,
-              background: 'black',
             }}
           >
             <div
@@ -180,7 +179,7 @@ class DayColumn extends React.Component {
                 height: 12,
                 width: 12,
                 borderRadius: 6,
-                backgroundColor: 'black',
+                backgroundColor: '#c41f30',
                 position: 'absolute',
                 top: -5,
                 left: -7,

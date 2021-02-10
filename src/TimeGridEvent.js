@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import dayjs from 'dayjs'
 import React from 'react'
 
 function stringifyPercent(v) {
@@ -21,28 +22,21 @@ function TimeGridEvent(props) {
     onClick,
     onDoubleClick,
     onKeyPress,
-    components: { event: Event, eventWrapper: EventWrapper, liveButton },
+    components: { eventWrapper: EventWrapper, sessionCard },
   } = props
-  const title = accessors.title(event)
+  const SessionCard = sessionCard
   const tooltip = accessors.tooltip(event)
   const end = accessors.end(event)
   const start = accessors.start(event)
-  const splittedLabel = label && label.split(' – ')
-  const splittedStartLabel = splittedLabel && splittedLabel[0] && splittedLabel[0].split(' ')
-  const splittedEndLabel = splittedLabel && splittedLabel[1] && splittedLabel[1].split(' ')
-  const startLabel = `${splittedStartLabel && splittedStartLabel[0] && splittedStartLabel[0].toLowerCase()}${splittedStartLabel&&splittedStartLabel[1]&&splittedStartLabel[1].toLowerCase()}`
-  const endLabel = `${splittedEndLabel && splittedEndLabel[0] && splittedEndLabel[0].toLowerCase()}${splittedEndLabel && splittedEndLabel[1] && splittedEndLabel[1].toLowerCase()}`
-  const processedLabel = `${startLabel} - ${endLabel}`;
  
   const userProps = getters.eventProp(event, start, end, selected)
 
   const { height, top, width, xOffset } = style
+  const size = Math.abs(dayjs(event.start).diff(event.end, 'm')) <= 30 ? 'sm' : 'md'
+  // week view
   const inner = [
-    <div key="2" className="rbc-event-content">
-      {Event ? <Event event={event} title={title} /> : title}
-    </div>,
-    <div key="1" className="rbc-event-label">
-      {processedLabel}
+    <div key="2" className="rbc-event-content" style={{ maxHeight: 'inherit', margin: 0 }}>
+      <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} isLive={event.isLive} isAvailable={event.isAvailable} size={size} rating={event.rating} onClick={event.handleClick} />
     </div>,
   ]
 
@@ -58,6 +52,7 @@ function TimeGridEvent(props) {
           [rtl ? 'right' : 'left']: stringifyPercent(xOffset),
           width: stringifyPercent(width),
           height: stringifyPercent(height),
+          margin: 0
         }}
         title={
           tooltip
@@ -73,11 +68,8 @@ function TimeGridEvent(props) {
         {props.view !== 'day' && inner}
         {props.view === 'day' && (
           <EventItem
-            isLive={event.isLive}
-            inner={inner}
-            liveButton={liveButton}
             event={event}
-            selected={props.selected}
+            sessionCard={sessionCard}
           />
         )}
       </div>
@@ -87,16 +79,11 @@ function TimeGridEvent(props) {
 
 export default TimeGridEvent
 
-const EventItem = ({ inner, isLive, liveButton, event, selected }) => {
+const EventItem = ({ event, sessionCard: SessionCard }) => {
+  // day view
   return (
-    <div style={styles.container}>
-      <div>{inner}</div>
-      {isLive && liveButton && liveButton({ event, selected })}
-      {isLive && !liveButton && (
-        <div style={!selected ? styles.goLive : styles.selectedGoLive}>
-          Go Live
-        </div>
-      )}
+    <div style={styles.container, {height: '100%'}}>
+      <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} isLive={event.isLive} isAvailable={event.isAvailable} size="lg" rating={event.rating} onClick={event.handleClick} />
     </div>
   )
 }
@@ -119,7 +106,8 @@ const styles = {
     paddingRight: 32,
     paddingLeft: 32,
     fontSize: 18,
-    fontFamily: 'Circular Std Bold',
+    fontFamily: 'Poppins',
+    fontWeight: 700,
   },
   selectedGoLive: {
     display: 'flex',
@@ -133,6 +121,7 @@ const styles = {
     paddingRight: 32,
     paddingLeft: 32,
     fontSize: 18,
-    fontFamily: 'Circular Std Bold',
+    fontFamily: 'Poppins',
+    fontWeight: 700,
   },
 }

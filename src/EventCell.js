@@ -21,8 +21,8 @@ class EventCell extends React.Component {
       accessors,
       getters,
       children,
-      components: { event: Event, eventWrapper: EventWrapper },
-      slotStart,
+      components: { event: Event, eventWrapper: EventWrapper, sessionCard: SessionCard },
+      slotStart,	
       slotEnd,
       ...props
     } = this.props
@@ -56,23 +56,26 @@ class EventCell extends React.Component {
             : end < moment()
             ? '#909090'
             : 'white',
+            overflow: 'inherit'
         }}
         title={tooltip || undefined}
       >
-        {Event ? (
+        {/* // month view */}
+        <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} isLive={event.isLive} isAvailable={event.isAvailable} size="sm" rating={event.rating} onClick={event.handleClick} />
+        {/* {Event ? (
           <Event
-            event={event}
-            continuesPrior={continuesPrior}
-            continuesAfter={continuesAfter}
-            title={title}
-            isAllDay={allDay}
-            localizer={localizer}
-            slotStart={slotStart}
-            slotEnd={slotEnd}
-          />
-        ) : (
-          `${hour} ${title}`
-        )}
+            event={event}	
+            continuesPrior={continuesPrior}	
+            continuesAfter={continuesAfter}	
+            title={title}	
+            isAllDay={allDay}	
+            localizer={localizer}	
+            slotStart={slotStart}	
+            slotEnd={slotEnd}	
+          />	
+        ) : (	
+          `${hour} ${title}`	
+        )} */}
       </div>
     )
 
@@ -81,14 +84,13 @@ class EventCell extends React.Component {
         <div
           {...props}
           tabIndex={0}
-          style={{ ...userProps.style, ...style }}
+          style={{ ...userProps.style, ...style, padding: 0 }}
           className={clsx('rbc-event', className, userProps.className, {
             'rbc-selected': selected,
             'rbc-event-allday': showAsAllDay,
             'rbc-event-continues-prior': continuesPrior,
             'rbc-event-continues-after': continuesAfter,
           })}
-          style={{ backgroundColor, color: 'black' }}
           onClick={e => onSelect && onSelect(event, e)}
           onDoubleClick={e => onDoubleClick && onDoubleClick(event, e)}
           onKeyPress={e => onKeyPress && onKeyPress(event, e)}

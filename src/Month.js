@@ -18,6 +18,7 @@ import Header from './Header'
 import DateHeader from './DateHeader'
 
 import { inRange, sortEvents } from './utils/eventLevels'
+import moment from 'moment'
 
 let eventsForWeek = (evts, start, end, accessors) =>
   evts.filter(e => inRange(e, start, end, accessors))
@@ -80,12 +81,14 @@ class MonthView extends React.Component {
     this._weekCount = weeks.length
 
     return (
+      <div style={{ padding: '1.5rem', borderRadius: '10px', backgroundColor: '#fff', height: '100%' }}>
       <div className={clsx('rbc-month-view', className)}>
         <div className="rbc-row rbc-month-header">
           {this.renderHeaders(weeks[0])}
         </div>
-        {weeks.map(this.renderWeek)}
-        {this.props.popup && this.renderOverlay()}
+          {weeks.map(this.renderWeek)}
+          {this.props.popup && this.renderOverlay()}
+      </div>
       </div>
     )
   }
@@ -152,6 +155,9 @@ class MonthView extends React.Component {
     let label = localizer.format(date, 'dateFormat')
     let DateHeaderComponent = this.props.components.dateHeader || DateHeader
 
+    // indicator position in month view
+    const top = Number(moment(currentDate).format('H')) * (543 / 24)
+
     return (
       <div
         {...props}
@@ -160,7 +166,31 @@ class MonthView extends React.Component {
           isOffRange && 'rbc-off-range',
           isCurrent && 'rbc-current'
         )}
+        style={{ position: 'relative' }}
       >
+        {
+          // disable indicator for month view
+          // isCurrent && (
+          //   <div
+          //     className="rbc-current-time-indicator"
+          //     style={{
+          //       top: `${top}%`,
+          //     }}
+          //   >
+          //     <div
+          //       style={{
+          //         height: 12,
+          //         width: 12,
+          //         borderRadius: 6,
+          //         backgroundColor: '#c41f30',
+          //         position: 'absolute',
+          //         top: -5,
+          //         left: -7,
+          //       }}
+          //     />
+          //   </div>
+          // )
+        }
         <DateHeaderComponent
           label={label}
           date={date}
@@ -173,20 +203,21 @@ class MonthView extends React.Component {
   }
 
   renderHeaders(row) {
-    let { localizer, components } = this.props
+    let { localizer, components, date: currentDate } = this.props
     let first = row[0]
     let last = row[row.length - 1]
     let HeaderComponent = components.header || Header
 
-    return dates.range(first, last, 'day').map((day, idx) => (
-      <div key={'header_' + idx} className="rbc-header">
-        <HeaderComponent
-          date={day}
-          localizer={localizer}
-          label={localizer.format(day, 'weekdayFormat')}
-        />
-      </div>
-    ))
+    return dates.range(first, last, 'day').map((day, idx) => {
+      return (
+        <div key={'header_' + idx} className="rbc-header" style={{ color: moment(day).isSame(currentDate, 'day') && '#00264C' }}>
+          <HeaderComponent
+            date={day}
+            localizer={localizer}
+            label={localizer.format(day, 'weekdayFormat')}
+          />
+        </div>
+    )})
   }
 
   renderOverlay() {

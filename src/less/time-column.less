@@ -1,6 +1,5 @@
 @import './variables.less';
 
-
 .rbc-time-column {
   display: flex;
   flex-direction: column;
@@ -11,12 +10,15 @@
   }
 }
 
-
 .rbc-timeslot-group {
   border-bottom: 1px solid @cell-border;
   min-height: 40px;
   display: flex;
   flex-flow: column nowrap;
+
+  div:last-child {
+    border-top: 0px;
+  }
 }
 
 .rbc-time-gutter,
@@ -25,7 +27,11 @@
 }
 
 .rbc-label {
+  // set left time style
   padding: 0 5px;
+  font-size: 11px;
+  line-height: 14px;
+  color: #728ba3;
 }
 
 .rbc-day-slot {
@@ -36,7 +42,6 @@
     left: 0;
     position: absolute;
     right: 0;
-    margin-right: 10px;
     top: 0;
 
     &.rbc-rtl {
@@ -106,10 +111,10 @@
   }
 
   .rbc-header,
-  .rbc-day-bg, {
+  .rbc-day-bg {
     width: 140px;
     // min-width: 0;
-    flex:  1 1 0;
+    flex: 1 1 0;
     flex-basis: 0 px;
   }
 }

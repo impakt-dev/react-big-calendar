@@ -133,6 +133,7 @@
     "@emotion/styled": "^11.0.0",
     "clsx": "^1.0.4",
     "date-arithmetic": "^4.0.1",
+    "dayjs": "^1.10.4",
     "dom-helpers": "^5.1.0",
     "framer-motion": "^3.2.1",
     "invariant": "^2.2.4",

@@ -5,6 +5,7 @@
   flex-direction: column;
   flex: 1 0 0;
   overflow: auto;
+  background-color: $calendar-body-bg;
 
   table.rbc-agenda-table {
     width: 100%;
@@ -54,10 +55,10 @@
   text-transform: lowercase;
 
   .rbc-continues-after:after {
-    content: ' »'
+    content: ' »';
   }
   .rbc-continues-prior:before {
-    content: '« '
+    content: '« ';
   }
 }
 
@@ -66,8 +67,6 @@
   white-space: nowrap;
 }
 
-
-
 .rbc-agenda-event-cell {
-  width: 100%
+  width: 100%;
 }

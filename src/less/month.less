@@ -1,6 +1,5 @@
 @import './variables.less';
 
-
 .rbc-row {
   display: flex;
   flex-direction: row;
@@ -18,7 +17,6 @@
   background-color: @date-selection-bg-color;
 }
 
-
 .rbc-show-more {
   &:extend(.rbc-ellipsis);
   background-color: rgba(255, 255, 255, 0.3);
@@ -31,7 +29,7 @@
 
 .rbc-month-view {
   position: relative;
-  border: 1px solid @calendar-border;
+  // border: 1px solid @calendar-border;
   display: flex;
   flex-direction: column;
   flex: 1 0 0;
@@ -40,11 +38,17 @@
   -webkit-user-select: none;
 
   height: 100%; // ie-fix
+
+  > div:not(:first-child) {
+    border-left: 1px solid @calendar-border;
+    border-right: 1px solid @calendar-border;
+  }
 }
 
 .rbc-month-header {
   display: flex;
   flex-direction: row;
+  border-bottom: 1px solid @calendar-border;
 }
 
 .rbc-month-row {
@@ -73,7 +77,9 @@
   }
 
   > a {
-    &, &:active, &:visited {
+    &,
+    &:active,
+    &:visited {
       color: inherit;
       text-decoration: none;
     }
@@ -106,7 +112,7 @@
   z-index: @event-zindex + 1;
   border: 1px solid #e5e5e5;
   background-color: #fff;
-  box-shadow: 0 5px 15px rgba(0,0,0,.25);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
   padding: 10px;
 
   > * + * {
@@ -115,7 +121,6 @@
 }
 
 .rbc-overlay-header {
-  border-bottom: 1px solid #e5e5e5;
-  margin: -10px -10px 5px -10px ;
+  margin: -10px -10px 5px -10px;
   padding: 2px 10px;
 }

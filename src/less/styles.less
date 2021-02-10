@@ -1,7 +1,6 @@
 @import './variables.less';
 @import './reset.less';
 
-
 .rbc-calendar {
   box-sizing: border-box;
   height: 100%;
@@ -37,10 +36,14 @@
 }
 
 .rbc-off-range {
-  color: @out-of-range-color;
+  // set day number color for cells out of month range
+  a {
+    color: @out-of-range-color !important;
+  }
 }
 
 .rbc-off-range-bg {
+  // class for cells out of month range
   background: @out-of-range-bg-color;
 }
 
@@ -67,7 +70,9 @@
   }
 
   & > a {
-    &, &:active, &:visited {
+    &,
+    &:active,
+    &:visited {
       color: inherit;
       text-decoration: none;
     }
@@ -84,7 +89,6 @@
 .rbc-today {
   background-color: @today-highlight-bg;
 }
-
 
 @import './toolbar.less';
 @import './event.less';

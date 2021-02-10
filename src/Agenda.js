@@ -27,7 +27,7 @@ function Agenda({
   const contentRef = useRef(null)
   const tbodyRef = useRef(null)
 
-  const Component = components.agendaComponent;
+  const SessionCard = components.sessionCard;
 
   useEffect(() => {
     _adjustHeader()
@@ -128,19 +128,26 @@ function Agenda({
     },
     dateContainer: {
       display: 'flex',
-      alignItems: 'flex-end',
+      alignItems: 'center',
+      justifyContent: 'space-around',
       marginRight: 8,
-      width: 60,
+      width: 80,
     },
     dayNumber: {
       marginRight: 4,
-      fontSize: 24,
-      fontFamily: 'Circular Std Bold',
+      fontSize: 15,
+      fontFamily: 'Poppins',
+      fontWeight: 700,
+      lineHeight: '24px',
+      color: '#728BA3',
     },
     dayName: {
-      fontSize: 14,
+      fontSize: 17,
       paddingBottom: 4,
-      fontFamily: 'Circular Std Medium',
+      fontFamily: 'Poppins',
+      fontWeight: 500,
+      lineHeight: '24px',
+      color: '#00264C',
     },
     eventContainer: {
       background: '#EBEBEB',
@@ -153,11 +160,13 @@ function Agenda({
       // flexDirection: 'column'
     },
     eventTitle: {
-      fontFamily: 'Circular Std Bold',
+      fontFamily: 'Poppins',
+      fontWeight: 700,
       fontSize: 16,
     },
     eventDate: {
-      fontFamily: 'Circular Std Medium',
+      fontFamily: 'Poppins',
+      fontWeight: 500,
       fontSize: 14,
     },
   }
@@ -189,40 +198,46 @@ function Agenda({
                     .toLowerCase()}`;
 
                 return (
-                  <div key={event.id}>
-                    { isShowTimeIndicator && id === 0 && <div
-                      className='rbc-current-time-indicator'
-                      style={{
-                        marginBottom: 4,
-                        display: 'flex',
-                        height: 2,
-                        backgroundColor: 'black',
-                        position: 'relative',
-                        marginTop: 8,
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: 12,
-                          height: 12,
-                          borderRadius: 6,
-                          backgroundColor: 'black',
-                          position: 'absolute',
-                          top: -6,
-                        }}
-                      />
-                    </div>}
-
+                  <div key={event.id} style={{ marginBottom: '.5rem' }}>
                     <div style={styles.container}>
                       {<div style={styles.dateContainer}>
-                        {id === 0 && (<><div style={styles.dayNumber}>
-                          {moment(key).format('DD')}
-                        </div>
+                        {(<>
                           <div style={styles.dayName}>
-                            {moment(key).format('ddd')}
-                          </div></>)}
+                          {id === 0 && moment(key).format('ddd')}
+                          </div>
+                          <div style={styles.dayNumber}>
+                            {id === 0 && moment(key).format('DD')}
+                          </div>
+                          </>)}
                       </div>}
-                      <Component title={event.title} variant={event.variant}/>
+                      <div style={{ width: '100%' }}>
+                        { 
+                          // disable time indicator for agenda view 
+                        }
+                        {/* { isShowTimeIndicator && id === 0 && <div
+                          className='rbc-current-time-indicator'
+                          style={{
+                            marginBottom: 4,
+                            display: 'flex',
+                            position: 'relative',
+                            marginTop: 8,
+                          }}
+                        >
+                        <div
+                          style={{
+                            width: 8,
+                            height: 8,
+                            borderRadius: 6,
+                            backgroundColor: '#C41F30',
+                            position: 'absolute',
+                            top: -4,
+                          }}
+                        />
+                      </div>} */}
+                      <div style={{ width: '99%', marginLeft: 'auto' }}>
+                        <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} isLive={event.isLive} isAvailable={event.isAvailable} isLive={event.isLive} isAvailable={event.isAvailable} size="lg" rating={event.rating} onClick={event.handleClick} />
+                      </div>
+                      </div>
                     </div>
                   </div>
                 )

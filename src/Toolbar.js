@@ -117,7 +117,8 @@ export default Toolbar
 
 const styles = {
   labelStyle: {
-    fontFamily: 'Circular Std Medium',
+    fontFamily: 'Poppins',
+    fontWeight: 500,
     fontSize: '16px',
     color: '#262626',
   },

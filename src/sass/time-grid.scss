@@ -23,6 +23,7 @@
   border: 0px solid $calendar-border;
   border-top: 0px solid $calendar-border;
   min-height: 0;
+  background-color: $calendar-body-bg;
 
   .rbc-time-gutter {
     white-space: nowrap;
@@ -35,7 +36,7 @@
     position: relative;
   }
   .rbc-allday-cell + .rbc-allday-cell {
-    border-left: 1px solid #EBEBEB;
+    border-left: 1px solid #ebebeb;
   }
 
   .rbc-allday-events {
@@ -55,20 +56,20 @@
   flex-direction: row;
 
   &.rbc-overflowing {
-    border-right: 0px solid #EBEBEB;
+    border-right: 0px solid #ebebeb;
   }
 
   .rbc-rtl &.rbc-overflowing {
     border-right-width: 0;
-    border-left: px solid #EBEBEB;
+    border-left: px solid #ebebeb;
   }
 
   > .rbc-row:first-child {
-    border-bottom: 1px solid #EBEBEB;
+    border-bottom: 1px solid #ebebeb;
   }
 
   > .rbc-row.rbc-row-resource {
-    border-bottom: 1px solid #EBEBEB;
+    border-bottom: 1px solid #ebebeb;
   }
 
   // .rbc-gutter-cell {
@@ -89,16 +90,16 @@
   display: flex;
   min-width: 0;
   flex-direction: column;
-  border-left: 0px solid #EBEBEB;
+  border-left: 0px solid #ebebeb;
 
   .rbc-rtl & {
     border-left-width: 0;
-    border-right: 0px solid #EBEBEB;
+    border-right: 0px solid #ebebeb;
   }
 
-  >.rbc-row.rbc-row-resource {
-      border-bottom: 1px solid #EBEBEB;
-      flex-shrink: 0;
+  > .rbc-row.rbc-row-resource {
+    border-bottom: 1px solid #ebebeb;
+    flex-shrink: 0;
   }
 }
 
@@ -113,19 +114,20 @@
   overflow-y: auto;
   position: relative;
   padding-top: 8px;
+  padding-right: 8px;
 
   > .rbc-time-gutter {
     flex: none;
   }
 
   > * + * > * {
-    border-left: 1px solid #EBEBEB;
-    border-bottom: 0px solid #EBEBEB;
+    border-left: 1px solid #ebebeb;
+    border-bottom: 0px solid #ebebeb;
   }
 
   .rbc-rtl & > * + * > * {
     border-left-width: 0;
-    border-right: 1px solid #EBEBEB;
+    // border-right: 1px solid #ebebeb;
   }
 
   > .rbc-day-slot {
