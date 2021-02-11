@@ -33,7 +33,7 @@ function TimeGridEvent(props) {
   const userProps = getters.eventProp(event, start, end, selected)
 
   const { height, top, width, xOffset } = style
-  const size = Math.abs(dayjs(event.start).diff(event.end, 'm')) <= 30 ? 'sm' : 'md'
+  const size = Math.abs(dayjs(start).diff(end, 'm')) <= 30 ? 'sm' : 'md'
   // week view
   const inner = [
     <div key="2" className="rbc-event-content" style={{ maxHeight: 'inherit', margin: 0 }}>
