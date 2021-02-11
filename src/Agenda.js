@@ -196,6 +196,9 @@ function Agenda({
                   .toLowerCase()} - ${moment(event.end)
                     .format('HH:mmA')
                     .toLowerCase()}`;
+                let title = accessors.title(event)
+                let end = accessors.end(event)
+                let start = accessors.start(event)
 
                 return (
                   <div key={event.id} style={{ marginBottom: '.5rem' }}>
@@ -235,7 +238,7 @@ function Agenda({
                         />
                       </div>} */}
                       <div style={{ width: '99%', marginLeft: 'auto' }}>
-                        <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} isLive={event.isLive} isAvailable={event.isAvailable} isLive={event.isLive} isAvailable={event.isAvailable} size="lg" rating={event.rating} onClick={event.handleClick} />
+                        <SessionCard title={title} startTime={start} endTime={end} variant={event.variant} isLive={event.isLive} isAvailable={event.isAvailable} isLive={event.isLive} isAvailable={event.isAvailable} size="lg" rating={event.rating} onClick={event.handleClick} />
                       </div>
                       </div>
                     </div>

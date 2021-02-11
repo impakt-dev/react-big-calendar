@@ -28,6 +28,7 @@ function TimeGridEvent(props) {
   const tooltip = accessors.tooltip(event)
   const end = accessors.end(event)
   const start = accessors.start(event)
+  const title = accessors.title(event)
  
   const userProps = getters.eventProp(event, start, end, selected)
 
@@ -36,7 +37,7 @@ function TimeGridEvent(props) {
   // week view
   const inner = [
     <div key="2" className="rbc-event-content" style={{ maxHeight: 'inherit', margin: 0 }}>
-      <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} isLive={event.isLive} isAvailable={event.isAvailable} size={size} rating={event.rating} onClick={event.handleClick} />
+      <SessionCard title={title} startTime={start} endTime={end} variant={event.variant} isLive={event.isLive} isAvailable={event.isAvailable} size={size} rating={event.rating} onClick={event.handleClick} />
     </div>,
   ]
 
@@ -70,6 +71,7 @@ function TimeGridEvent(props) {
           <EventItem
             event={event}
             sessionCard={sessionCard}
+            accessors={accessors}
           />
         )}
       </div>
@@ -79,11 +81,14 @@ function TimeGridEvent(props) {
 
 export default TimeGridEvent
 
-const EventItem = ({ event, sessionCard: SessionCard }) => {
+const EventItem = ({ event, sessionCard: SessionCard, accessors }) => {
+  const end = accessors.end(event)
+  const start = accessors.start(event)
+  const title = accessors.title(event)
   // day view
   return (
     <div style={styles.container, {height: '100%'}}>
-      <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} isLive={event.isLive} isAvailable={event.isAvailable} size="lg" rating={event.rating} onClick={event.handleClick} />
+      <SessionCard title={title} startTime={start} endTime={end} variant={event.variant} isLive={event.isLive} isAvailable={event.isAvailable} size="lg" rating={event.rating} onClick={event.handleClick} />
     </div>
   )
 }
