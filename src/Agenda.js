@@ -235,7 +235,7 @@ function Agenda({
                         />
                       </div>} */}
                       <div style={{ width: '99%', marginLeft: 'auto' }}>
-                        <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} isLive={event.isLive} isAvailable={event.isAvailable} isLive={event.isLive} isAvailable={event.isAvailable} size="lg" rating={event.rating} onClick={event.handleClick} />
+                        <SessionCard title={event.title} startTime={event.start} endTime={event.end} size="lg" onClick={event.handleClick} {...event} />
                       </div>
                       </div>
                     </div>
