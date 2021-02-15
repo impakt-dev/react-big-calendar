@@ -10,6 +10,7 @@ import { navigate } from './utils/constants'
 import { inRange } from './utils/eventLevels'
 import { isSelected } from './utils/selection'
 import moment from 'moment'
+import clsx from 'clsx'
 
 function Agenda({
   selected,
@@ -128,13 +129,13 @@ function Agenda({
     },
     dateContainer: {
       display: 'flex',
-      alignItems: 'center',
+      alignItems: 'baseline',
       justifyContent: 'space-around',
-      marginRight: 8,
       width: 80,
+      paddingTop: 2,
+      marginRight: 5
     },
     dayNumber: {
-      marginRight: 4,
       fontSize: 15,
       fontFamily: 'Poppins',
       fontWeight: 700,
@@ -143,7 +144,7 @@ function Agenda({
     },
     dayName: {
       fontSize: 17,
-      paddingBottom: 4,
+      marginLeft: 12,
       fontFamily: 'Poppins',
       fontWeight: 500,
       lineHeight: '24px',
@@ -179,62 +180,67 @@ function Agenda({
     })
   }
 
+  const getBorderLeftClassName = (parentIndex, parentLength, childIndex, childLength) => {
+    let classNames = 'rbc-time-row'
+
+    if (childIndex === childLength - 1 && parentIndex === parentLength - 1)
+      return classNames
+    else if (parentIndex === 0 && childIndex === 0) {
+      if (childLength > 1) {
+        classNames += ' rbc-time-row-bottom-border' // border top
+      } else {
+        classNames += ' rbc-time-row-top-border rbc-time-row-bottom-border' // border top + bottom
+      }
+    } else if (parentIndex === parentLength - 1) {
+      if (childIndex < childLength - 1) {
+        classNames += ' rbc-time-row-top-border' // border top
+      } else {
+        classNames += ' rbc-time-row-top-border rbc-time-row-bottom-border' // border top + bottom
+      }
+    } else if (childIndex !== 0 && childIndex < childLength - 1) {
+      return classNames
+    } else {
+      classNames += ' rbc-time-row-bottom-border' //border bottom
+    }
+
+    return classNames
+  }
+
 
   return (
-    <div className="rbc-agenda-view" style={{ marginTop: 8 }}>
+    <div className="rbc-agenda-view" style={{ marginTop: 8, paddingTop: 5 }}>
       {range.map((day, idx) => renderDay(day, events, idx))}
 
-      {Object.keys(groupedByDate).length !== 0 ? Object.keys(groupedByDate).map((key) => {
-        const isShowTimeIndicator = moment(activeDay[0]).format('DD MM YYYY') === moment(key).format('DD MM YYYY');
+      {Object.keys(groupedByDate).length !== 0 ? Object.keys(groupedByDate).map((key, keyIdx) => {
+        // const isShowTimeIndicator = moment(activeDay[0]).format('DD MM YYYY') === moment(key).format('DD MM YYYY');
 
         return (
           <React.Fragment key={key}>
             {
               groupedByDate[key].map((event, id) => {
-                const eventDate = `${moment(event.start)
-                  .format('HH:mmA')
-                  .toLowerCase()} - ${moment(event.end)
-                    .format('HH:mmA')
-                    .toLowerCase()}`;
+                // const eventDate = `${moment(event.start)
+                //   .format('HH:mmA')
+                //   .toLowerCase()} - ${moment(event.end)
+                //     .format('HH:mmA')
+                //     .toLowerCase()}`;
 
                 return (
-                  <div key={event.id} style={{ marginBottom: '.5rem' }}>
+                  <div key={event.id}>
                     <div style={styles.container}>
-                      {<div style={styles.dateContainer}>
-                        {(<>
-                          <div style={styles.dayName}>
-                          {id === 0 && moment(key).format('ddd')}
-                          </div>
-                          <div style={styles.dayNumber}>
-                            {id === 0 && moment(key).format('DD')}
-                          </div>
-                          </>)}
-                      </div>}
-                      <div style={{ width: '100%' }}>
-                        { 
-                          // disable time indicator for agenda view 
-                        }
-                        {/* { isShowTimeIndicator && id === 0 && <div
-                          className='rbc-current-time-indicator'
-                          style={{
-                            marginBottom: 4,
-                            display: 'flex',
-                            position: 'relative',
-                            marginTop: 8,
-                          }}
-                        >
-                        <div
-                          style={{
-                            width: 8,
-                            height: 8,
-                            borderRadius: 6,
-                            backgroundColor: '#C41F30',
-                            position: 'absolute',
-                            top: -4,
-                          }}
-                        />
-                      </div>} */}
-                      <div style={{ width: '99%', marginLeft: 'auto' }}>
+                      <div>
+                        {<div style={styles.dateContainer} className={id === 1000 && 'rbc-time-cell'}>
+                          {(<>
+                            <div style={styles.dayName}>
+                            {id === 0 && moment(key).format('ddd')}
+                            </div>
+                            <div style={styles.dayNumber}>
+                              {id === 0 && moment(key).format('DD')}
+                            </div>
+                            </>)}
+                        </div>}
+                      </div>
+                      <div style={{ width: '100%', border: '1px solid #F0F7FF', borderTopWidth: (keyIdx === 0 && id === 0) ? 0 : 1, borderBottom: 0 }} className={getBorderLeftClassName(keyIdx, Object.keys(groupedByDate).length, id, groupedByDate[key].length)}>
+                      <div style={{ width: '99%', margin: 'auto', marginBottom: '.5rem' }}>
                         <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} isLive={event.isLive} isAvailable={event.isAvailable} isLive={event.isLive} isAvailable={event.isAvailable} size="lg" rating={event.rating} onClick={event.handleClick} />
                       </div>
                       </div>
