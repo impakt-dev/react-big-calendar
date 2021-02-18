@@ -18,7 +18,7 @@ const Basic = ({  }) => (
       timeslots={2}
       showMultiDayTimes
       localizer={localizer}
-      defaultView='day'
+      defaultView='agenda'
       popup
       components={{
         sessionCard: ({ title, startTime, endTime, variant, size, rating, isLive, isAvailable, onClick }) => <Box w="full" h="full"><SessionStatusCard sessionName={title} variant={variant} startTime={startTime} endTime={endTime} size={size} rating={rating} isLive={isLive} isAvailable={isAvailable} onClick={onClick} /></Box>
