@@ -10,7 +10,6 @@ import { navigate } from './utils/constants'
 import { inRange } from './utils/eventLevels'
 import { isSelected } from './utils/selection'
 import moment from 'moment'
-import clsx from 'clsx'
 
 function Agenda({
   selected,
@@ -21,13 +20,13 @@ function Agenda({
   length,
   date,
   events,
+  ...rest
 }) {
   const headerRef = useRef(null)
   const dateColRef = useRef(null)
   const timeColRef = useRef(null)
   const contentRef = useRef(null)
   const tbodyRef = useRef(null)
-
   const SessionCard = components.sessionCard;
 
   useEffect(() => {
@@ -240,8 +239,8 @@ function Agenda({
                         </div>}
                       </div>
                       <div style={{ width: '100%', border: '1px solid #F0F7FF', borderTopWidth: (keyIdx === 0 && id === 0) ? 0 : 1, borderBottom: 0 }} className={getBorderLeftClassName(keyIdx, Object.keys(groupedByDate).length, id, groupedByDate[key].length)}>
-                      <div style={{ width: '99%', margin: 'auto', marginBottom: '.5rem' }}>
-                        <SessionCard title={event.title} startTime={event.start} endTime={event.end} variant={event.variant} isLive={event.isLive} isAvailable={event.isAvailable} isLive={event.isLive} isAvailable={event.isAvailable} size="lg" rating={event.rating} onClick={event.handleClick} />
+                      <div style={{ width: '99%', margin: 'auto', marginBottom: '.5rem', cursor: 'pointer' }} onClick={() => rest.onSelectEvent(event)}>
+                        <SessionCard title={event.title} startTime={event.start} endTime={event.end} size="lg" onClick={event.handleClick} {...event} />
                       </div>
                       </div>
                     </div>
