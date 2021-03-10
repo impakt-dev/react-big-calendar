@@ -92,6 +92,12 @@
   color: #00264c;
   &.rbc-now {
     font-weight: bold;
+    a {
+      background-color: rgb(28, 162, 181);
+      color: #fff;
+      padding: 4px;
+      border-radius: 50%;
+    }
   }
 
   > a {
